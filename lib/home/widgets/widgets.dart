@@ -1,0 +1,9 @@
+export 'avatar.dart';
+export 'dropdown_list.dart';
+export 'permanent_address.dart';
+export 'present_address.dart';
+export 'past_student.dart';
+export 'mother_information.dart';
+export 'father_information.dart';
+export 'candidate_information.dart';
+export 'elements.dart';

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "167009655082",
+    "project_id": "stpaulsrkl-admission",
+    "storage_bucket": "stpaulsrkl-admission.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:167009655082:android:7aea82129f94e51d876653",
+        "android_client_info": {
+          "package_name": "in.i9studios.stpaulsrkl.admission"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "167009655082-dbgmthmf7cbt7l0c870vn7fg6ok8vh7k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.i9studios.stpaulsrkl.admission",
+            "certificate_hash": "52f46b6b9c447a871d886a217917bf36c10ba9b3"
+          }
+        },
+        {
+          "client_id": "167009655082-m4n4j38fl89h78kpn02uecrhsicuk94p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvgKuBI8F2HuDq8PHOefR6W2gBNy_vIUA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "167009655082-m4n4j38fl89h78kpn02uecrhsicuk94p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

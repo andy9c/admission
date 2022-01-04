@@ -1,0 +1,179 @@
+import 'package:flutter/services.dart';
+
+import '../login.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
+import 'package:sizer/sizer.dart';
+
+class LoginForm extends StatelessWidget {
+  const LoginForm({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<LoginCubit, LoginState>(
+      listener: (context, state) {
+        if (state.status.isSubmissionFailure) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              const SnackBar(content: Text('Authentication Failure')),
+            );
+        }
+      },
+      child: Align(
+        alignment: const Alignment(0, -1 / 3),
+        child: ListView(
+          padding: const EdgeInsets.all(0.0),
+          shrinkWrap: false,
+          children: <Widget>[
+            const SizedBox(height: 80),
+            Image.asset(
+              'assets/st_pauls_logo.png',
+              height: 120,
+            ),
+            const SizedBox(height: 16),
+            Align(
+              alignment: Alignment.center,
+              child: SizedBox(
+                width: 70.w,
+                child: _EmailInput(),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Align(
+              alignment: Alignment.center,
+              child: SizedBox(
+                width: 70.w,
+                child: _PasswordInput(),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Align(
+              alignment: Alignment.center,
+              child: SizedBox(
+                width: 70.w,
+                child: _LoginButton(),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Align(
+              alignment: Alignment.center,
+              child: SizedBox(
+                width: 70.w,
+                child: Column(
+                  children: [
+                    Text(
+                      "Last Date Of Registration : 26th Oct 2021",
+                      textAlign: TextAlign.center,
+                      softWrap: true,
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
+                    Text(
+                      "Recommended Browsers : Chrome & Firefox",
+                      textAlign: TextAlign.center,
+                      softWrap: true,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class LowerCaseTextFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    return TextEditingValue(
+      text: newValue.text.toLowerCase(),
+      selection: newValue.selection,
+    );
+  }
+}
+
+class _EmailInput extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<LoginCubit, LoginState>(
+      buildWhen: (previous, current) => previous.email != current.email,
+      builder: (context, state) {
+        return TextField(
+          inputFormatters: [
+            LowerCaseTextFormatter(),
+          ],
+          key: const Key('loginForm_emailInput_textField'),
+          onChanged: (email) => context.read<LoginCubit>().emailChanged(email),
+          keyboardType: TextInputType.emailAddress,
+          textInputAction: TextInputAction.next,
+          decoration: InputDecoration(
+            labelText: 'registration ID',
+            helperText: '',
+            errorText: state.email.invalid ? 'invalid registration ID' : null,
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _PasswordInput extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<LoginCubit, LoginState>(
+      buildWhen: (previous, current) => previous.password != current.password,
+      builder: (context, state) {
+        return TextField(
+          key: const Key('loginForm_passwordInput_textField'),
+          textInputAction: TextInputAction.done,
+          onChanged: (password) =>
+              context.read<LoginCubit>().passwordChanged(password),
+          obscureText: true,
+          decoration: InputDecoration(
+            labelText: 'password',
+            helperText: '',
+            errorText: state.password.invalid ? 'invalid password' : null,
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _LoginButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<LoginCubit, LoginState>(
+      buildWhen: (previous, current) => previous.status != current.status,
+      builder: (context, state) {
+        return state.status.isSubmissionInProgress
+            ? const SizedBox(
+                width: 54,
+                height: 54,
+                child: Center(child: CircularProgressIndicator()),
+              )
+            : ElevatedButton(
+                key: const Key('loginForm_continue_raisedButton'),
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  primary: Colors.blueAccent,
+                ),
+                onPressed: state.status.isValidated
+                    ? () => context.read<LoginCubit>().logInWithCredentials()
+                    : null,
+                child: const Text('LOGIN'),
+              );
+      },
+    );
+  }
+}
