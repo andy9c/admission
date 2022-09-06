@@ -1,5 +1,6 @@
 import 'package:flutter/services.dart';
 
+import '../../home/home.dart';
 import '../login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -64,16 +65,16 @@ class LoginForm extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      "Last Date Of Registration : 26th Oct 2021",
+                      "Last Date Of Registration : $last_date_of_registration",
                       textAlign: TextAlign.center,
                       softWrap: true,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.red,
                         fontWeight: FontWeight.bold,
                         fontStyle: FontStyle.italic,
                       ),
                     ),
-                    Text(
+                    const Text(
                       "Recommended Browsers : Chrome & Firefox",
                       textAlign: TextAlign.center,
                       softWrap: true,
@@ -166,7 +167,7 @@ class _LoginButton extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  primary: Colors.blueAccent,
+                  backgroundColor: Colors.blueAccent,
                 ),
                 onPressed: state.status.isValidated
                     ? () => context.read<LoginCubit>().logInWithCredentials()

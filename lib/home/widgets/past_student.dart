@@ -194,13 +194,13 @@ class RelationshipWithStudentSelection extends StatelessWidget {
               iconSize: 24,
               elevation: 16,
               style: const TextStyle(color: Colors.deepPurple),
-              decoration: InputDecoration(
-                prefixIcon: const Padding(
+              decoration: const InputDecoration(
+                prefixIcon: Padding(
                   padding:
                       EdgeInsets.only(top: 0), // add padding to adjust icon
                   child: Icon(Icons.family_restroom_rounded),
                 ),
-                border: const OutlineInputBorder(),
+                border: OutlineInputBorder(),
                 labelText: "Relationship to Student",
                 helperText: '',
               ),

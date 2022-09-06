@@ -37,6 +37,13 @@
             {
               "client_id": "167009655082-m4n4j38fl89h78kpn02uecrhsicuk94p.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "167009655082-ts04pm5h847fl1n2p41thmjn65hgenb6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "in.i9studios.stpaulsrkl.admission"
+              }
             }
           ]
         }

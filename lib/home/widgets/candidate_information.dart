@@ -1,11 +1,13 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: use_build_context_synchronously
 
 import 'package:admission/home/cubit/student_cubit.dart';
 import 'package:admission/home/home.dart';
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:sizer/sizer.dart';
-
 
 class CandidateFirstName extends StatelessWidget {
   const CandidateFirstName({Key? key}) : super(key: key);
@@ -144,7 +146,7 @@ class CandidateLastName extends StatelessWidget {
 }
 
 class DateOfBirth extends StatelessWidget {
-  DateOfBirth({Key? key}) : super(key: key);
+  const DateOfBirth({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -168,14 +170,14 @@ class DateOfBirth extends StatelessWidget {
               textInputAction: TextInputAction.next,
               key: const Key('studentForm_dateOfBirth_textField'),
               obscureText: false,
-              decoration: InputDecoration(
-                prefixIcon: const Padding(
+              decoration: const InputDecoration(
+                prefixIcon: Padding(
                   padding:
                       EdgeInsets.only(top: 0), // add padding to adjust icon
                   child: Icon(Icons.calendar_today_rounded,
                       color: Colors.lightBlue),
                 ),
-                border: const OutlineInputBorder(),
+                border: OutlineInputBorder(),
                 labelText: "Candidate's Date of Birth",
                 helperText: '',
                 //errorText: state.dateOfBirth.invalid ? 'required field' : null,
@@ -184,15 +186,17 @@ class DateOfBirth extends StatelessWidget {
                 final datePick = await showDatePicker(
                   context: context,
                   initialDate: DateTime.now(),
-                  firstDate: DateTime(2000),
-                  lastDate: DateTime(2022),
+                  firstDate: DateTime(calendarFirstYear),
+                  lastDate: DateTime(calendarLastYear),
                 );
                 if (datePick != null) {
                   var birthDate = datePick;
 
                   // put it here
-                  String birthDateInString =
-                      "${birthDate.day}/${birthDate.month}/${birthDate.year}"; // 14/08/2019
+                  String birthDateInString = formatDate(
+                      DateTime(birthDate.year, birthDate.month, birthDate.day),
+                      [d, '-', M, '-', yyyy]).toUpperCase();
+                  // "${birthDate.day}/${birthDate.toString()}/${birthDate.year}"; // 14/08/2019
 
                   //_dateOfBirthController.text = birthDateInString;
 
@@ -558,10 +562,12 @@ class AadharCard extends StatelessWidget {
             width: 70.w,
             child: TextFormField(
               inputFormatters: [
-                UpperCaseTextFormatter(),
+                FilteringTextInputFormatter.allow(RegExp(r'(\d+)')),
+                LengthLimitingTextInputFormatter(14),
+                MaskTextInputFormatter(mask: "####-####-####"),
               ],
               enabled: state.setEnabled,
-              initialValue: state.aadharNumber,
+              initialValue: state.aadharNumber.value,
               maxLines: 1,
               textCapitalization: TextCapitalization.words,
               textInputAction: TextInputAction.next,
@@ -569,14 +575,16 @@ class AadharCard extends StatelessWidget {
               onChanged: (aadharCard) =>
                   context.read<StudentCubit>().aadharCardChanged(aadharCard),
               obscureText: false,
-              decoration: const InputDecoration(
-                prefixIcon: Padding(
+              decoration: InputDecoration(
+                prefixIcon: const Padding(
                   padding:
                       EdgeInsets.only(top: 0), // add padding to adjust icon
                   child: Icon(Icons.card_membership_rounded),
                 ),
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
                 labelText: "Candidate's Aadhar Card Number",
+                errorText:
+                    state.aadharNumber.invalid ? 'invalid aadhar number' : null,
               ),
             ),
           ),

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import '../home/cubit/student_cubit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dart_date/dart_date.dart';
@@ -7,16 +9,15 @@ import 'database.dart';
 
 class Create {
   static Future<void> execute(StudentState state) async {
-    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-    final User? _student = FirebaseAuth.instance.currentUser;
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+    final User? student = FirebaseAuth.instance.currentUser;
 
-    final CollectionReference _mainCollection =
-        _firestore.collection(rootCollection);
+    final CollectionReference mainCollection =
+        firestore.collection(rootCollection);
 
     final timeStamp = DateTime.now().format('MMMM dd y, h:mm:ss a');
 
-    var rootDocumentReferencer =
-        _mainCollection.doc(_student!.email.toString());
+    var rootDocumentReferencer = mainCollection.doc(student!.email.toString());
 
     Map<String, dynamic> data = <String, dynamic>{
       "sameAsPresentCheckBox": state.sameAsPresentCheckBox.value,

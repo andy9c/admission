@@ -52,7 +52,7 @@ class PermanentLocation extends StatelessWidget {
               },
               obscureText: false,
               decoration: InputDecoration(
-                prefixIcon: Padding(
+                prefixIcon: const Padding(
                   padding:
                       EdgeInsets.only(top: 0), // add padding to adjust icon
                   child: Icon(Icons.home, color: Colors.blue),
@@ -290,7 +290,7 @@ class PermanentState extends StatelessWidget {
                   .permanentStateChanged(permanentState),
               obscureText: false,
               decoration: InputDecoration(
-                prefixIcon: Padding(
+                prefixIcon: const Padding(
                   padding:
                       EdgeInsets.only(top: 0), // add padding to adjust icon
                   child: Icon(Icons.villa_rounded, color: Colors.blue),
@@ -354,7 +354,7 @@ class PermanentPinCode extends StatelessWidget {
               obscureText: false,
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.only(top: 20),
-                prefixIcon: Padding(
+                prefixIcon: const Padding(
                   padding:
                       EdgeInsets.only(top: 0), // add padding to adjust icon
                   child: Icon(Icons.pin_drop_rounded, color: Colors.blue),

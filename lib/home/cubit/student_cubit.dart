@@ -1,6 +1,7 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../database/database.dart';
 import '../home.dart';
-import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -560,8 +561,9 @@ class StudentCubit extends Cubit<StudentState> {
   }
 
   void aadharCardChanged(String value) {
+    final aadharNumber = Aadhar.dirty(value.toUpperCase());
     emit(state.copyWith(
-      aadharNumber: value.toUpperCase(),
+      aadharNumber: aadharNumber,
     ));
   }
 

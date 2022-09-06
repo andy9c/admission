@@ -1,3 +1,4 @@
+import 'package:admission/home/home.dart';
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,7 +13,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("St Paul's School Admission 2022-2023"),
+        title: Text("St Paul's School Admission $academic_year"),
         backgroundColor: const Color(0xFFA02B29), // appbar color.
         foregroundColor: Colors.white,
       ),

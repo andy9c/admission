@@ -23,9 +23,11 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
+  @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final user = context.select((AppBloc bloc) => bloc.state.user);
+    final ScrollController scrollController = ScrollController();
 
     Widget registrationEmailID() {
       return Align(
@@ -58,7 +60,7 @@ class _HomePageState extends State<HomePage> {
       return Align(
         alignment: const Alignment(0, -1 / 3),
         child: Scrollbar(
-          isAlwaysShown: true,
+          thumbVisibility: true,
           child: ListView(
             padding: const EdgeInsets.all(0.0),
             shrinkWrap: false,
@@ -76,14 +78,14 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    ;
-
     Widget loadStudent(bool setEnabled) {
       return Align(
         alignment: const Alignment(0, -1 / 3),
         child: Scrollbar(
-          isAlwaysShown: true,
+          thumbVisibility: true,
+          controller: scrollController,
           child: ListView(
+            controller: scrollController,
             padding: const EdgeInsets.all(0.0),
             shrinkWrap: false,
             children: <Widget>[
@@ -92,6 +94,19 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(height: 4),
               registrationEmailID(),
               setEnabled ? Container() : const SubmitAndLockButton(),
+              spacerWidget(),
+              spacerWidget(),
+              spacerWidget(),
+              spacerWidget(),
+              sectionHeading("General Information"),
+              dividerWidget(),
+              spacerWidget(),
+              sectionHeading(
+                  "All information typed here is automatically converted to capital letters. Email addresses are valid both in capital and small letters. Example: hello@gmail.com is the same as HELLO@GMAIL.COM"),
+              spacerWidget(),
+              dividerWidget(),
+              spacerWidget(),
+              spacerWidget(),
               spacerWidget(),
               spacerWidget(),
               sectionHeading("Candidate's Information"),
@@ -105,7 +120,7 @@ class _HomePageState extends State<HomePage> {
               spacerWidget(),
               const CandidateLastName(),
               spacerWidget(),
-              DateOfBirth(),
+              const DateOfBirth(),
               spacerWidget(),
               const PlaceOfBirth(),
               spacerWidget(),
@@ -208,7 +223,7 @@ class _HomePageState extends State<HomePage> {
               sectionHeading("Permanent Address (Domicile)"),
               dividerWidget(),
               spacerWidget(),
-              sameAsPresentCheckBox(),
+              const sameAsPresentCheckBox(),
               spacerWidget(),
               const PermanentLocation(),
               spacerWidget(),
@@ -258,7 +273,7 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Admission Form 2022-2023'),
+        title: Text('Admission Form $academic_year'),
         backgroundColor: const Color(0xFFA02B29), // appbar color.
         foregroundColor: Colors.white,
         actions: <Widget>[
@@ -275,7 +290,7 @@ class _HomePageState extends State<HomePage> {
           listener: (context, state) {},
           builder: (context, state) {
             return (state.loadStatus == LoadStatus.Loading)
-                ? LoadingState()
+                ? const LoadingState()
                 : (state.loadStatus == LoadStatus.ExistingStudent)
                     ? loadStudent(false)
                     : (state.loadStatus == LoadStatus.NewStudent &&

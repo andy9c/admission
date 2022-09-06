@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, avoid_types_as_parameter_names
+
 import '../cubit/student_cubit.dart';
 import '../home.dart';
 import 'package:flutter/material.dart';
@@ -17,12 +19,70 @@ class UpperCaseTextFormatter extends TextInputFormatter {
   }
 }
 
+class DigitOnlyTextFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    final numericRegex = RegExp(r'^[0-9]*$');
+
+    return TextEditingValue(
+      text: numericRegex.hasMatch(newValue.text)
+          ? newValue.text.toUpperCase()
+          : oldValue.text.toUpperCase(),
+      selection: newValue.selection,
+    );
+  }
+}
+
+class CardTextFormatter extends TextInputFormatter {
+  final String sample;
+  final String separator;
+
+  CardTextFormatter({
+    required this.sample,
+    required this.separator,
+  });
+
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    if (newValue.text.isNotEmpty) {
+      if (newValue.text.length > oldValue.text.length) {
+        if (newValue.text.length > sample.length) return oldValue;
+        if (newValue.text.length < sample.length &&
+            sample[newValue.text.length - 1] == separator) {
+          return TextEditingValue(
+            text:
+                '${oldValue.text}$separator${newValue.text.substring(newValue.text.length - 1)}',
+            selection: TextSelection.collapsed(
+              offset: newValue.selection.end + 1,
+            ),
+          );
+        }
+      }
+    }
+    return newValue;
+  }
+}
+
+class NameOnlyTextFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    final numericRegex = RegExp(r'^[A-Za-z ]$');
+
+    return TextEditingValue(
+      text: numericRegex.hasMatch(newValue.text)
+          ? newValue.text.toUpperCase()
+          : oldValue.text.toUpperCase(),
+      selection: newValue.selection,
+    );
+  }
+}
+
 class Expired {
   static bool hasExpired() {
     var thisInstant = DateTime.now().toLocal();
-    int expYear = 2021;
-    int expMonth = 10;
-    int expDay = 27;
 
     var expiryTime = DateTime.utc(
       expYear,
@@ -158,8 +218,8 @@ class LoadingState extends StatelessWidget {
           width: 54,
           height: 54,
           child: Center(
+            key: Key('studentForm_loading_circularProgress'),
             child: CircularProgressIndicator(),
-            key: const Key('studentForm_loading_circularProgress'),
           ),
         ),
       ),
@@ -215,8 +275,8 @@ class SubmitAndLockButton extends StatelessWidget {
                 width: 54,
                 height: 54,
                 child: Center(
+                  key: Key('saveForm_loading_circularProgress'),
                   child: CircularProgressIndicator(),
-                  key: const Key('saveForm_loading_circularProgress'),
                 ),
               )
             : Align(
@@ -229,12 +289,11 @@ class SubmitAndLockButton extends StatelessWidget {
                           ? state.status.isValidated
                               ? Container()
                               : Text(
-                                  "Please check the following required fields (with blue highlighted icons) before submitting\n\n" +
-                                      invalidFields,
+                                  "Please check the following required fields (with blue highlighted icons) before submitting\n\n$invalidFields",
                                   textAlign: TextAlign.center,
                                   textWidthBasis: TextWidthBasis.parent,
                                   overflow: TextOverflow.visible,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: Colors.redAccent,
                                       fontSize: 16,
                                       fontWeight: FontWeight.w900),

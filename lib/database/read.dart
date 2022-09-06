@@ -6,14 +6,14 @@ import 'database.dart';
 
 class Read {
   static Future<StudentState> execute() async {
-    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-    final User? _student = FirebaseAuth.instance.currentUser;
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+    final User? student = FirebaseAuth.instance.currentUser;
 
-    final CollectionReference _mainCollection =
-        _firestore.collection(rootCollection);
+    final CollectionReference mainCollection =
+        firestore.collection(rootCollection);
 
-    final userID = _student!.email.toString();
-    var rootDocumentReferencer = _mainCollection.doc(userID);
+    final userID = student!.email.toString();
+    var rootDocumentReferencer = mainCollection.doc(userID);
 
     return rootDocumentReferencer
         .get()

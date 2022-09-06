@@ -1,8 +1,7 @@
-// ignore_for_file: public_member_api_docs
-
-import 'dart:typed_data';
+// ignore_for_file: public_member_api_docs, depend_on_referenced_packages, prefer_const_declarations
 
 import 'package:admission/home/cubit/student_cubit.dart';
+import 'package:admission/home/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,9 +19,8 @@ class CreatePDF extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-            title: Text("ADMISSION FORM 2022-2023 (" +
-                state.admissionSoughtForClass.value.toString() +
-                ")")),
+            title: Text(
+                "ADMISSION FORM $academic_year (${state.admissionSoughtForClass.value})")),
         body: PdfPreview(
           build: (format) => _generatePdf(format, state),
         ),
@@ -36,9 +34,7 @@ class CreatePDF extends StatelessWidget {
           mainAxisAlignment: pw.MainAxisAlignment.center,
           children: [
             pw.Text(
-              'ADMISSION FORM 2022-2023 (' +
-                  state.admissionSoughtForClass.value.toString() +
-                  ')',
+              'ADMISSION FORM $academic_year (${state.admissionSoughtForClass.value})',
               style: pw.TextStyle(
                 fontSize: 12,
                 fontWeight: pw.FontWeight.bold,
@@ -47,7 +43,7 @@ class CreatePDF extends StatelessWidget {
             ),
           ],
         ),
-        padding: pw.EdgeInsets.all(4),
+        padding: const pw.EdgeInsets.all(4),
         decoration: pw.BoxDecoration(
           color: PdfColor.fromHex("A02B29"),
         ),
@@ -81,17 +77,16 @@ class CreatePDF extends StatelessWidget {
               textAlign: pw.TextAlign.left,
               softWrap: true,
               text: pw.TextSpan(
-                style: pw.TextStyle(
+                style: const pw.TextStyle(
                   fontSize: 12,
                 ),
                 children: [
-                  pw.TextSpan(
+                  const pw.TextSpan(
                     text: "Candidate's Information ",
                   ),
                   pw.TextSpan(
-                    text: "(Registration ID - " +
-                        FirebaseAuth.instance.currentUser!.email.toString() +
-                        ")",
+                    text:
+                        "(Registration ID - ${FirebaseAuth.instance.currentUser!.email})",
                     style: pw.TextStyle(
                       fontStyle: pw.FontStyle.italic,
                       fontWeight: pw.FontWeight.bold,
@@ -111,7 +106,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "First Name\n",
@@ -127,7 +122,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Middle Name\n",
@@ -143,7 +138,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Last Name\n",
@@ -170,7 +165,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Date of Birth\n",
@@ -186,7 +181,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Place of Birth\n",
@@ -202,7 +197,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Gender\n",
@@ -229,7 +224,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Mother Tongue\n",
@@ -245,7 +240,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Blood Group\n",
@@ -261,7 +256,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Religion\n",
@@ -288,7 +283,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Social Category\n",
@@ -304,14 +299,14 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Aadhar Number\n",
                           style: pw.TextStyle(fontWeight: pw.FontWeight.bold),
                         ),
                         pw.TextSpan(
-                          text: state.aadharNumber,
+                          text: state.aadharNumber.value,
                         ),
                       ],
                     ),
@@ -320,7 +315,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Last School Attended\n",
@@ -347,7 +342,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Last Class Attended\n",
@@ -363,7 +358,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Admission Sought For\n",
@@ -395,7 +390,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "First Name\n",
@@ -411,7 +406,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Middle Name\n",
@@ -427,7 +422,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Last Name\n",
@@ -454,7 +449,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Profession\n",
@@ -470,7 +465,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Qualification\n",
@@ -486,7 +481,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Additional Qualifications\n",
@@ -513,7 +508,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Home/Personal Contact\n",
@@ -529,7 +524,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Work/Office Contact\n",
@@ -545,7 +540,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Personal/Work Email\n",
@@ -576,7 +571,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "First Name\n",
@@ -592,7 +587,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Middle Name\n",
@@ -608,7 +603,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Last Name\n",
@@ -635,7 +630,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Profession\n",
@@ -651,7 +646,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Qualification\n",
@@ -667,7 +662,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Additional Qualifications\n",
@@ -694,7 +689,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Home/Personal Contact\n",
@@ -710,7 +705,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Work/Office Contact\n",
@@ -726,7 +721,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Personal/Work Email\n",
@@ -758,7 +753,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Name\n",
@@ -774,7 +769,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Registration No.\n",
@@ -790,7 +785,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Class/Section\n",
@@ -817,7 +812,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Relationship\n",
@@ -833,7 +828,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Year of Joining\n",
@@ -849,7 +844,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Year of Leaving (if any)\n",
@@ -880,7 +875,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Present Location\n",
@@ -896,7 +891,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Present Town/City\n",
@@ -912,7 +907,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Present Post Office\n",
@@ -939,7 +934,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Present District\n",
@@ -955,7 +950,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Present State\n",
@@ -971,7 +966,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Present PIN Code\n",
@@ -1002,7 +997,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Permanent Location\n",
@@ -1018,7 +1013,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Permanent Town/City\n",
@@ -1034,7 +1029,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Permanent Post Office\n",
@@ -1061,7 +1056,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Permanent District\n",
@@ -1077,7 +1072,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Permanent State\n",
@@ -1093,7 +1088,7 @@ class CreatePDF extends StatelessWidget {
                     textAlign: pw.TextAlign.center,
                     softWrap: true,
                     text: pw.TextSpan(
-                      style: pw.TextStyle(fontSize: 12),
+                      style: const pw.TextStyle(fontSize: 12),
                       children: [
                         pw.TextSpan(
                           text: "Permanent PIN Code\n",

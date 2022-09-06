@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 part of 'student_cubit.dart';
 
 enum LoadStatus {
@@ -25,7 +27,7 @@ class StudentState extends Equatable {
     this.bloodGroup = const Compulsory.pure(),
     this.religion = const Compulsory.pure(),
     this.socialCategory = const Compulsory.pure(),
-    this.aadharNumber = "",
+    this.aadharNumber = const Aadhar.pure(),
     this.lastSchoolAttended = const Compulsory.pure(),
     this.lastClassAttended = const Compulsory.pure(),
     this.admissionSoughtForClass = const Compulsory.pure(),
@@ -88,7 +90,7 @@ class StudentState extends Equatable {
   final Compulsory religion;
   final Compulsory socialCategory;
 
-  final String aadharNumber;
+  final Aadhar aadharNumber;
   final Compulsory lastSchoolAttended;
   final Compulsory lastClassAttended;
   final Compulsory admissionSoughtForClass;
@@ -217,7 +219,7 @@ class StudentState extends Equatable {
     Compulsory? bloodGroup,
     Compulsory? religion,
     Compulsory? socialCategory,
-    String? aadharNumber,
+    Aadhar? aadharNumber,
     Compulsory? lastSchoolAttended,
     Compulsory? lastClassAttended,
     Compulsory? admissionSoughtForClass,
@@ -342,7 +344,7 @@ class StudentState extends Equatable {
       bloodGroup: Compulsory.dirty(snap['bloodGroup']),
       religion: Compulsory.dirty(snap['religion']),
       socialCategory: Compulsory.dirty(snap['socialCategory']),
-      aadharNumber: snap['aadharNumber'],
+      aadharNumber: Aadhar.dirty(snap['aadharNumber']),
       lastSchoolAttended: Compulsory.dirty(snap['lastSchoolAttended']),
       lastClassAttended: Compulsory.dirty(snap['lastClassAttended']),
       admissionSoughtForClass:

@@ -34,7 +34,7 @@ class PresentLocation extends StatelessWidget {
                   .presentLocationChanged(presentLocation),
               obscureText: false,
               decoration: InputDecoration(
-                prefixIcon: Padding(
+                prefixIcon: const Padding(
                   padding:
                       EdgeInsets.only(top: 0), // add padding to adjust icon
                   child: Icon(Icons.home, color: Colors.blue),
@@ -212,7 +212,7 @@ class PresentState extends StatelessWidget {
                   .presentStateChanged(presentState),
               obscureText: false,
               decoration: InputDecoration(
-                prefixIcon: Padding(
+                prefixIcon: const Padding(
                   padding:
                       EdgeInsets.only(top: 0), // add padding to adjust icon
                   child: Icon(Icons.villa_rounded, color: Colors.blue),
@@ -258,7 +258,7 @@ class PresentPinCode extends StatelessWidget {
                   .presentPinCodeChanged(presentPinCode),
               obscureText: false,
               decoration: InputDecoration(
-                prefixIcon: Padding(
+                prefixIcon: const Padding(
                   padding:
                       EdgeInsets.only(top: 0), // add padding to adjust icon
                   child: Icon(Icons.pin_drop_rounded, color: Colors.blue),
