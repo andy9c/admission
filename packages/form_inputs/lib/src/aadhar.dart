@@ -26,13 +26,15 @@ class Aadhar extends FormzInput<String?, AadharValidationError> {
 
   @override
   AadharValidationError? validator(String? value) {
-    if (value == null) return null;
+    if (value == null || value.isEmpty) return null;
 
     value = value.replaceAll(new RegExp(r'[^0-9]'), '');
     bool isValid = check.verhoeff.validate(value);
 
     return (value.trim().length == 12 && isValid)
         ? null
-        : AadharValidationError.invalid;
+        : value.trim().length == 0
+            ? null
+            : AadharValidationError.invalid;
   }
 }

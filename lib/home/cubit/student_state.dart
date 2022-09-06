@@ -9,11 +9,11 @@ enum LoadStatus {
 }
 
 @immutable
-class StudentState extends Equatable {
+class StudentState extends Equatable with FormzMixin {
   const StudentState({
     this.loadStatus = LoadStatus.NewStudent,
     this.setEnabled = true,
-    this.status = FormzStatus.pure,
+    // this.status = FormzStatus.pure,
     this.invalidFields = fieldDescription,
     this.sameAsPresentCheckBox = const CheckBox.pure(),
     this.iAgreeCheckBox = const CheckBox.pure(),
@@ -71,7 +71,8 @@ class StudentState extends Equatable {
 
   final LoadStatus loadStatus;
   final bool setEnabled;
-  final FormzStatus status;
+
+  // final FormzStatus status;
   final List<String> invalidFields;
 
   final CheckBox sameAsPresentCheckBox;
@@ -139,6 +140,39 @@ class StudentState extends Equatable {
   final String permanentDistrict;
   final Compulsory permanentState;
   final Compulsory permanentPinCode;
+
+  @override
+  List<FormzInput> get inputs => [
+        candidateFirstName,
+        dateOfBirth,
+        placeOfBirth,
+        gender,
+        motherTongue,
+        bloodGroup,
+        religion,
+        socialCategory,
+        aadharNumber,
+        lastSchoolAttended,
+        lastClassAttended,
+        admissionSoughtForClass,
+        fatherFirstName,
+        fatherProfession,
+        fatherQualification,
+        fatherHomeContact,
+        fatherEmail,
+        motherFirstName,
+        motherProfession,
+        motherQualification,
+        motherHomeContact,
+        motherEmail,
+        presentLocation,
+        presentState,
+        presentPinCode,
+        permanentLocation,
+        permanentState,
+        permanentPinCode,
+        iAgreeCheckBox,
+      ];
 
   @override
   List<Object> get props {
@@ -263,7 +297,7 @@ class StudentState extends Equatable {
     return StudentState(
       loadStatus: loadStatus ?? this.loadStatus,
       setEnabled: setEnabled ?? this.setEnabled,
-      status: status ?? this.status,
+      // status: status ?? this.status,
       invalidFields: invalidFields ?? this.invalidFields,
       sameAsPresentCheckBox:
           sameAsPresentCheckBox ?? this.sameAsPresentCheckBox,

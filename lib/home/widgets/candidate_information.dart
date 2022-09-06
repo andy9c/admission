@@ -3,8 +3,8 @@
 import 'package:admission/home/cubit/student_cubit.dart';
 import 'package:admission/home/home.dart';
 import 'package:date_format/date_format.dart';
+import 'package:easy_mask/easy_mask.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
@@ -555,14 +555,29 @@ class AadharCard extends StatelessWidget {
       buildWhen: (previous, current) =>
           previous.aadharNumber != current.aadharNumber,
       builder: (context, state) {
+        int digitsLeft = 0;
+
+        if (state.aadharNumber.value == null) {
+          digitsLeft = 0;
+        } else {
+          digitsLeft = 12 -
+              state.aadharNumber.value!
+                  .replaceAll(RegExp(r'[^0-9]'), '')
+                  .length;
+        }
         return Align(
           alignment: Alignment.center,
           child: SizedBox(
             width: 70.w,
             child: TextFormField(
               inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp(r'(\d+)')),
-                LengthLimitingTextInputFormatter(14),
+                TextInputMask(
+                  mask: ['9999-9999-9999'],
+                  placeholder: '_',
+                  maxPlaceHolders: 14,
+                ),
+                //FilteringTextInputFormatter.allow(RegExp(r'(\d+)')),
+                //LengthLimitingTextInputFormatter(14),
               ],
               enabled: state.setEnabled,
               initialValue: state.aadharNumber.value,
@@ -581,8 +596,13 @@ class AadharCard extends StatelessWidget {
                 ),
                 border: const OutlineInputBorder(),
                 labelText: "Candidate's Aadhar Card Number",
-                errorText:
-                    state.aadharNumber.invalid ? 'invalid aadhar number' : null,
+                errorText: state.aadharNumber.invalid
+                    ? digitsLeft == 0
+                        ? 'invalid aadhar number'
+                        : digitsLeft == 1
+                            ? '$digitsLeft digit left'
+                            : '$digitsLeft digits left'
+                    : null,
               ),
             ),
           ),
