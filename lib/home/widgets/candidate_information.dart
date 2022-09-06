@@ -6,7 +6,6 @@ import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:sizer/sizer.dart';
 
 class CandidateFirstName extends StatelessWidget {
@@ -564,7 +563,6 @@ class AadharCard extends StatelessWidget {
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'(\d+)')),
                 LengthLimitingTextInputFormatter(14),
-                MaskTextInputFormatter(mask: "####-####-####"),
               ],
               enabled: state.setEnabled,
               initialValue: state.aadharNumber.value,

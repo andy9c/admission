@@ -27,5 +27,7 @@
   "storage": {
     "rules": "storage.rules"
   },
-  "remoteconfig": {}
+  "remoteconfig": {
+    "template": "remoteconfig.template.json"
+  }
 }

@@ -52,7 +52,6 @@ dependencies:
   google_fonts: ^3.0.1
   google_sign_in: ^5.4.1
   jiffy: ^5.0.0
-  mask_text_input_formatter: ^2.4.0
   path: ^1.8.1
   printing: ^5.9.2
   sizer: ^2.0.15
