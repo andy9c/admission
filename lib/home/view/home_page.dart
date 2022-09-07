@@ -101,7 +101,7 @@ class _HomePageState extends State<HomePage> {
               dividerWidget(),
               spacerWidget(),
               sectionHeading(
-                  "All information typed here is automatically converted to capital letters. Email addresses are valid both in capital and small letters. Example: hello@gmail.com is the same as HELLO@GMAIL.COM\n\nFor successfully completing the application process\n\n1) Fill in the details here and submit the application form. 2)) Take a print out of the admission form.\n3) Submit the printed application form in the school office."),
+                  "All information typed here is automatically converted to capital letters. Email addresses are valid both in capital and small letters. Example: hello@gmail.com is the same as HELLO@GMAIL.COM\n\nFor successfully completing the application process \n\n1) Fill in the details here and submit the online application form on or before $last_date_of_registration\n2) Take print out of the admission form\n3) Submit the printed form in the school office on or before $last_date_of_submission"),
               spacerWidget(),
               dividerWidget(),
               spacerWidget(),

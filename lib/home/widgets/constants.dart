@@ -14,5 +14,9 @@ String last_date_of_registration =
     formatDate(DateTime(expYear, expMonth, expDay - 1), [d, '-', M, '-', yyyy])
         .toUpperCase();
 
+String last_date_of_submission =
+    formatDate(DateTime(expYear, expMonth, expDay + 6), [d, '-', M, '-', yyyy])
+        .toUpperCase();
+
 int calendarFirstYear = 2000;
 int calendarLastYear = expYear + 1;
