@@ -3,9 +3,9 @@
 import 'package:admission/home/cubit/student_cubit.dart';
 import 'package:admission/home/home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
-
 
 class MotherFirstName extends StatelessWidget {
   const MotherFirstName({Key? key}) : super(key: key);
@@ -22,7 +22,7 @@ class MotherFirstName extends StatelessWidget {
             width: 70.w,
             child: TextFormField(
               inputFormatters: [
-                UpperCaseTextFormatter(),
+                NameUpperCaseTextFormatter(),
               ],
               enabled: state.setEnabled,
               initialValue: state.motherFirstName.value,
@@ -69,7 +69,7 @@ class MotherMiddleName extends StatelessWidget {
             width: 70.w,
             child: TextFormField(
               inputFormatters: [
-                UpperCaseTextFormatter(),
+                NameUpperCaseTextFormatter(),
               ],
               enabled: state.setEnabled,
               initialValue: state.motherMiddleName,
@@ -113,7 +113,7 @@ class MotherLastName extends StatelessWidget {
             width: 70.w,
             child: TextFormField(
               inputFormatters: [
-                UpperCaseTextFormatter(),
+                NameUpperCaseTextFormatter(),
               ],
               enabled: state.setEnabled,
               initialValue: state.motherLastName,
@@ -323,7 +323,7 @@ class MotherHomeContact extends StatelessWidget {
             width: 70.w,
             child: TextFormField(
               inputFormatters: [
-                UpperCaseTextFormatter(),
+                FilteringTextInputFormatter.allow(RegExp(r'[0-9\+\,]')),
               ],
               enabled: state.setEnabled,
               initialValue: state.motherHomeContact.value,
@@ -370,7 +370,7 @@ class MotherOfficeContact extends StatelessWidget {
             width: 70.w,
             child: TextFormField(
               inputFormatters: [
-                UpperCaseTextFormatter(),
+                FilteringTextInputFormatter.allow(RegExp(r'[0-9\+\,]')),
               ],
               enabled: state.setEnabled,
               initialValue: state.motherOfficeContact,

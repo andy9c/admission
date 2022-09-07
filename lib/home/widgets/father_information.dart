@@ -3,6 +3,7 @@
 import 'package:admission/home/cubit/student_cubit.dart';
 import 'package:admission/home/home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
@@ -21,7 +22,7 @@ class FatherFirstName extends StatelessWidget {
             width: 70.w,
             child: TextFormField(
               inputFormatters: [
-                UpperCaseTextFormatter(),
+                NameUpperCaseTextFormatter(),
               ],
               enabled: state.setEnabled,
               initialValue: state.fatherFirstName.value,
@@ -68,7 +69,7 @@ class FatherMiddleName extends StatelessWidget {
             width: 70.w,
             child: TextFormField(
               inputFormatters: [
-                UpperCaseTextFormatter(),
+                NameUpperCaseTextFormatter(),
               ],
               enabled: state.setEnabled,
               initialValue: state.fatherMiddleName,
@@ -112,7 +113,7 @@ class FatherLastName extends StatelessWidget {
             width: 70.w,
             child: TextFormField(
               inputFormatters: [
-                UpperCaseTextFormatter(),
+                NameUpperCaseTextFormatter(),
               ],
               enabled: state.setEnabled,
               initialValue: state.fatherLastName,
@@ -322,7 +323,7 @@ class FatherHomeContact extends StatelessWidget {
             width: 70.w,
             child: TextFormField(
               inputFormatters: [
-                UpperCaseTextFormatter(),
+                FilteringTextInputFormatter.allow(RegExp(r'[0-9\+\,]')),
               ],
               enabled: state.setEnabled,
               initialValue: state.fatherHomeContact.value,
@@ -369,7 +370,7 @@ class FatherOfficeContact extends StatelessWidget {
             width: 70.w,
             child: TextFormField(
               inputFormatters: [
-                UpperCaseTextFormatter(),
+                FilteringTextInputFormatter.allow(RegExp(r'[0-9\+\,]')),
               ],
               enabled: state.setEnabled,
               initialValue: state.fatherOfficeContact,

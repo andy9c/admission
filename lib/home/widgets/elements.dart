@@ -8,74 +8,40 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:sizer/sizer.dart';
 
+class NameUpperCaseTextFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    String textValue = newValue.text
+        .toUpperCase()
+        .replaceAll(RegExp(r'[ ]{2,}'), ' ')
+        .replaceAll(RegExp(r'[^A-Z ]'), '');
+
+    TextSelection caratPointer =
+        TextSelection.collapsed(offset: textValue.length);
+
+    return TextEditingValue(
+      text: textValue,
+      selection: caratPointer,
+    );
+  }
+}
+
 class UpperCaseTextFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
-    return TextEditingValue(
-      text: newValue.text.toUpperCase(),
-      selection: newValue.selection,
-    );
-  }
-}
+    String textValue = newValue.text
+        .toUpperCase()
+        .replaceAll(RegExp(r'[ ]{2,}'), ' ')
+        .replaceAll(RegExp(r'[^A-Z \,\-\:\/\.\(\)\&]'), '');
 
-class DigitOnlyTextFormatter extends TextInputFormatter {
-  @override
-  TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
-    final numericRegex = RegExp(r'^[0-9]*$');
+    TextSelection caratPointer =
+        TextSelection.collapsed(offset: textValue.length);
 
     return TextEditingValue(
-      text: numericRegex.hasMatch(newValue.text)
-          ? newValue.text.toUpperCase()
-          : oldValue.text.toUpperCase(),
-      selection: newValue.selection,
-    );
-  }
-}
-
-class CardTextFormatter extends TextInputFormatter {
-  final String sample;
-  final String separator;
-
-  CardTextFormatter({
-    required this.sample,
-    required this.separator,
-  });
-
-  @override
-  TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
-    if (newValue.text.isNotEmpty) {
-      if (newValue.text.length > oldValue.text.length) {
-        if (newValue.text.length > sample.length) return oldValue;
-        if (newValue.text.length < sample.length &&
-            sample[newValue.text.length - 1] == separator) {
-          return TextEditingValue(
-            text:
-                '${oldValue.text}$separator${newValue.text.substring(newValue.text.length - 1)}',
-            selection: TextSelection.collapsed(
-              offset: newValue.selection.end + 1,
-            ),
-          );
-        }
-      }
-    }
-    return newValue;
-  }
-}
-
-class NameOnlyTextFormatter extends TextInputFormatter {
-  @override
-  TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
-    final numericRegex = RegExp(r'^[A-Za-z ]$');
-
-    return TextEditingValue(
-      text: numericRegex.hasMatch(newValue.text)
-          ? newValue.text.toUpperCase()
-          : oldValue.text.toUpperCase(),
-      selection: newValue.selection,
+      text: textValue,
+      selection: caratPointer,
     );
   }
 }

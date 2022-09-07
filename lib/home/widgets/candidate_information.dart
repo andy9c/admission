@@ -22,7 +22,7 @@ class CandidateFirstName extends StatelessWidget {
             width: 70.w,
             child: TextFormField(
               inputFormatters: [
-                UpperCaseTextFormatter(),
+                NameUpperCaseTextFormatter(),
               ],
               enabled: state.setEnabled,
               initialValue: state.candidateFirstName.value,
@@ -69,7 +69,7 @@ class CandidateMiddleName extends StatelessWidget {
             width: 70.w,
             child: TextFormField(
               inputFormatters: [
-                UpperCaseTextFormatter(),
+                NameUpperCaseTextFormatter(),
               ],
               enabled: state.setEnabled,
               initialValue: state.candidateMiddleName,
@@ -114,7 +114,7 @@ class CandidateLastName extends StatelessWidget {
             width: 70.w,
             child: TextFormField(
               inputFormatters: [
-                UpperCaseTextFormatter(),
+                NameUpperCaseTextFormatter(),
               ],
               enabled: state.setEnabled,
               initialValue: state.candidateLastName,
