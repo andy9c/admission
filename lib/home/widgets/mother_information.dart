@@ -414,7 +414,7 @@ class MotherEmail extends StatelessWidget {
             width: 70.w,
             child: TextFormField(
               inputFormatters: [
-                UpperCaseTextFormatter(),
+                EmailTextFormatter(),
               ],
               enabled: state.setEnabled,
               initialValue: state.motherEmail.value,
@@ -434,7 +434,11 @@ class MotherEmail extends StatelessWidget {
                 border: const OutlineInputBorder(),
                 labelText: "Mother's Email",
                 helperText: 'Use comma to separate multiple emails',
-                errorText: state.motherEmail.invalid ? 'required field' : null,
+                errorText: state.motherEmail.invalid
+                    ? state.motherEmail.value.isEmpty
+                        ? 'required field'
+                        : 'invalid email address found'
+                    : null,
               ),
             ),
           ),

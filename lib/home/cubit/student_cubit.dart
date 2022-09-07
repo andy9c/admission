@@ -17,6 +17,12 @@ class StudentCubit extends Cubit<StudentState> {
   Future<void> loadData() async {
     emit(state.copyWith(loadStatus: LoadStatus.Loading));
 
+    bool status = await Check.userExists();
+
+    if (!status) {
+      await Create.execute(state);
+    }
+
     await FirebaseFirestore.instance
         .collection(rootCollection)
         .doc(FirebaseAuth.instance.currentUser!.email.toString())
@@ -387,7 +393,7 @@ class StudentCubit extends Cubit<StudentState> {
   }
 
   void fatherEmailChanged(String value) {
-    final fatherEmail = Compulsory.dirty(value.toUpperCase());
+    final fatherEmail = EmailMultiple.dirty(value.toUpperCase());
     emit(state.copyWith(
       fatherEmail: fatherEmail,
     ));
@@ -454,7 +460,7 @@ class StudentCubit extends Cubit<StudentState> {
   }
 
   void motherEmailChanged(String value) {
-    final motherEmail = Compulsory.dirty(value.toUpperCase());
+    final motherEmail = EmailMultiple.dirty(value.toUpperCase());
     emit(state.copyWith(
       motherEmail: motherEmail,
     ));

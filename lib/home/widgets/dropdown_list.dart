@@ -78,13 +78,19 @@ List<String> bloodGroupList = [
 List<String> religionList = [
   "CHRISTIAN (ROMAN CATHOLIC)",
   "CHRISTIAN (NON CATHOLIC)",
-  "HINDUISM",
+  "BUDDHIST",
+  "JEW",
+  "HINDU",
+  "SIKH",
+  "ZOROASTRIAN",
+  "JAIN",
+  "NOT APPLICABLE",
   "ISLAM",
-  "JAINISM",
-  "SIKHISM",
-  "BUDDHISM",
-  "JUDAISM",
-  "PARSI",
+  "BAHAI",
+  "KHASI",
+  "MEITEI",
+  "SARNAISM",
+  "INDIGENOUS",
 ];
 
 List<String> socialCategoryList = [

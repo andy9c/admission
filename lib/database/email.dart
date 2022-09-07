@@ -18,9 +18,9 @@ class Email {
     var rootDocumentReferencer = _emailCollection.doc(userID);
 
     List<String> fatherEmail =
-        state.fatherEmail.value!.split(",").map((e) => e.trim()).toList();
+        state.fatherEmail.value.split(",").map((e) => e.trim()).toList();
     List<String> motherEmail =
-        state.motherEmail.value!.split(",").map((e) => e.trim()).toList();
+        state.motherEmail.value.split(",").map((e) => e.trim()).toList();
 
     Map<String, dynamic> data = <String, dynamic>{
       "userID": userID,
@@ -34,7 +34,7 @@ class Email {
       "bloodGroup": state.bloodGroup.value,
       "religion": state.religion.value,
       "socialCategory": state.socialCategory.value,
-      "aadharNumber": state.aadharNumber,
+      "aadharNumber": state.aadharNumber.value,
       "lastSchoolAttended": state.lastSchoolAttended.value,
       "lastClassAttended": state.lastClassAttended.value,
       "admissionSoughtForClass": state.admissionSoughtForClass.value,

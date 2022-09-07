@@ -17,12 +17,9 @@ class NameUpperCaseTextFormatter extends TextInputFormatter {
         .replaceAll(RegExp(r'[ ]{2,}'), ' ')
         .replaceAll(RegExp(r'[^A-Z ]'), '');
 
-    TextSelection caratPointer =
-        TextSelection.collapsed(offset: textValue.length);
-
     return TextEditingValue(
       text: textValue,
-      selection: caratPointer,
+      selection: newValue.selection,
     );
   }
 }
@@ -36,12 +33,25 @@ class UpperCaseTextFormatter extends TextInputFormatter {
         .replaceAll(RegExp(r'[ ]{2,}'), ' ')
         .replaceAll(RegExp(r'[^A-Z \,\-\:\/\.\(\)\&]'), '');
 
-    TextSelection caratPointer =
-        TextSelection.collapsed(offset: textValue.length);
+    return TextEditingValue(
+      text: textValue,
+      selection: newValue.selection,
+    );
+  }
+}
+
+class EmailTextFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    String textValue = newValue.text
+        .toUpperCase()
+        .replaceAll(RegExp(r'[ ]{2,}'), ' ')
+        .replaceAll(RegExp(r'[^A-Z0-9 \,\-\:\/\.\(\)\&\@\_\+]'), '');
 
     return TextEditingValue(
       text: textValue,
-      selection: caratPointer,
+      selection: newValue.selection,
     );
   }
 }

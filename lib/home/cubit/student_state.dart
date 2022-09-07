@@ -39,7 +39,7 @@ class StudentState extends Equatable with FormzMixin {
     this.fatherAdditionalQualification = "",
     this.fatherHomeContact = const Compulsory.pure(),
     this.fatherOfficeContact = "",
-    this.fatherEmail = const Compulsory.pure(),
+    this.fatherEmail = const EmailMultiple.pure(),
     this.motherFirstName = const Compulsory.pure(),
     this.motherMiddleName = "",
     this.motherLastName = "",
@@ -48,7 +48,7 @@ class StudentState extends Equatable with FormzMixin {
     this.motherAdditionalQualification = "",
     this.motherHomeContact = const Compulsory.pure(),
     this.motherOfficeContact = "",
-    this.motherEmail = const Compulsory.pure(),
+    this.motherEmail = const EmailMultiple.pure(),
     this.relationshipStudentName = "",
     this.relationshipStudentRegNo = "",
     this.relationshipStudentClassSection = "",
@@ -106,7 +106,7 @@ class StudentState extends Equatable with FormzMixin {
 
   final Compulsory fatherHomeContact;
   final String fatherOfficeContact;
-  final Compulsory fatherEmail;
+  final EmailMultiple fatherEmail;
 
   final Compulsory motherFirstName;
   final String motherMiddleName;
@@ -118,7 +118,7 @@ class StudentState extends Equatable with FormzMixin {
 
   final Compulsory motherHomeContact;
   final String motherOfficeContact;
-  final Compulsory motherEmail;
+  final EmailMultiple motherEmail;
 
   final String relationshipStudentName;
   final String relationshipStudentRegNo;
@@ -265,7 +265,7 @@ class StudentState extends Equatable with FormzMixin {
     String? fatherAdditionalQualification,
     Compulsory? fatherHomeContact,
     String? fatherOfficeContact,
-    Compulsory? fatherEmail,
+    EmailMultiple? fatherEmail,
     Compulsory? motherFirstName,
     String? motherMiddleName,
     String? motherLastName,
@@ -274,7 +274,7 @@ class StudentState extends Equatable with FormzMixin {
     String? motherAdditionalQualification,
     Compulsory? motherHomeContact,
     String? motherOfficeContact,
-    Compulsory? motherEmail,
+    EmailMultiple? motherEmail,
     String? relationshipStudentName,
     String? relationshipStudentRegNo,
     String? relationshipStudentClassSection,
@@ -391,7 +391,7 @@ class StudentState extends Equatable with FormzMixin {
       fatherAdditionalQualification: snap['fatherAdditionalQualification'],
       fatherHomeContact: Compulsory.dirty(snap['fatherHomeContact']),
       fatherOfficeContact: snap['fatherOfficeContact'],
-      fatherEmail: Compulsory.dirty(snap['fatherEmail']),
+      fatherEmail: EmailMultiple.dirty(snap['fatherEmail']),
       motherFirstName: Compulsory.dirty(snap['motherFirstName']),
       motherMiddleName: snap['motherMiddleName'],
       motherLastName: snap['motherLastName'],
@@ -400,7 +400,7 @@ class StudentState extends Equatable with FormzMixin {
       motherAdditionalQualification: snap['motherAdditionalQualification'],
       motherHomeContact: Compulsory.dirty(snap['motherHomeContact']),
       motherOfficeContact: snap['motherOfficeContact'],
-      motherEmail: Compulsory.dirty(snap['motherEmail']),
+      motherEmail: EmailMultiple.dirty(snap['motherEmail']),
       relationshipStudentName: snap['relationshipStudentName'],
       relationshipStudentRegNo: snap['relationshipStudentRegNo'],
       relationshipStudentClassSection: snap['relationshipStudentClassSection'],
