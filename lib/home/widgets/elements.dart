@@ -40,6 +40,22 @@ class UpperCaseTextFormatter extends TextInputFormatter {
   }
 }
 
+class UpperCaseAndDigitsTextFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    String textValue = newValue.text
+        .toUpperCase()
+        .replaceAll(RegExp(r'[ ]{2,}'), ' ')
+        .replaceAll(RegExp(r'[^A-Z0-9 \,\-\:\/\.\(\)\&]'), '');
+
+    return TextEditingValue(
+      text: textValue,
+      selection: newValue.selection,
+    );
+  }
+}
+
 class EmailTextFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(

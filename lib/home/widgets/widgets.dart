@@ -8,3 +8,4 @@ export 'father_information.dart';
 export 'candidate_information.dart';
 export 'elements.dart';
 export 'constants.dart';
+export 'build_pdf.dart';

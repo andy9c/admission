@@ -3,6 +3,7 @@
 import 'package:admission/home/cubit/student_cubit.dart';
 import 'package:admission/home/home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
@@ -81,7 +82,7 @@ class RelationshipStudentRegNo extends StatelessWidget {
               visible: shouldEnable,
               child: TextFormField(
                 inputFormatters: [
-                  UpperCaseTextFormatter(),
+                  UpperCaseAndDigitsTextFormatter(),
                 ],
                 enabled: state.setEnabled && shouldEnable,
                 initialValue:
@@ -137,7 +138,7 @@ class RelationshipStudentClassSection extends StatelessWidget {
               visible: shouldEnable,
               child: TextFormField(
                 inputFormatters: [
-                  UpperCaseTextFormatter(),
+                  UpperCaseAndDigitsTextFormatter(),
                 ],
                 enabled: state.setEnabled && shouldEnable,
                 initialValue:
@@ -274,7 +275,7 @@ class RelationshipStudentYearOfJoining extends StatelessWidget {
               visible: shouldEnable,
               child: TextFormField(
                 inputFormatters: [
-                  UpperCaseTextFormatter(),
+                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                 ],
                 enabled: state.setEnabled && shouldEnable,
                 initialValue: shouldEnable
@@ -332,7 +333,7 @@ class RelationshipStudentYearOfLeaving extends StatelessWidget {
               visible: shouldEnable,
               child: TextFormField(
                 inputFormatters: [
-                  UpperCaseTextFormatter(),
+                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                 ],
                 enabled: state.setEnabled && shouldEnable,
                 initialValue: shouldEnable

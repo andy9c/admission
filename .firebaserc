@@ -1,5 +1,13 @@
 {
   "projects": {
     "default": "stpaulsrkl-admission"
+  },
+  "targets": {},
+  "etags": {
+    "stpaulsrkl-admission": {
+      "extensionInstances": {
+        "firestore-send-email": "0b9f5417233493a8f5cf811ccfc51673e1bf2d88ec55d2f464dd6d88777da8b8"
+      }
+    }
   }
 }

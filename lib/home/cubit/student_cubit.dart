@@ -17,12 +17,6 @@ class StudentCubit extends Cubit<StudentState> {
   Future<void> loadData() async {
     emit(state.copyWith(loadStatus: LoadStatus.Loading));
 
-    bool status = await Check.userExists();
-
-    if (!status) {
-      await Create.execute(state);
-    }
-
     await FirebaseFirestore.instance
         .collection(rootCollection)
         .doc(FirebaseAuth.instance.currentUser!.email.toString())

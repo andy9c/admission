@@ -1,24 +1,21 @@
 rules_version = '2';
+// Look at https://cloud.google.com/firestore/docs/security/rules-query
+
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
+    // Make sure the uid of the requesting user matches name of the user
+    // document. The wildcard expression {userId} makes the userId variable
+    // available in rules.
+    match /admission_ay_2023_2024/{userId} {
+      allow read, create: if request.auth != null && request.auth.token.email == userId;
+    }
 
-      //database rules for non-ADMINS
-      //allow read, create, update: if request.auth != null;
-      allow read, create: if request.auth != null;
+    match /mail/{userId} {
+      allow read, create: if request.auth != null && request.auth.token.email == userId;
+    }
 
-      //andy9c@gmail.com
-      //allow read, write: if request.auth != null && request.auth.uid == 'bGU2yQjxPJYaCVgB2C4hWKsnrjk2';
-
-      //ashi.franklin@gmail.com
-      //allow read, write: if request.auth != null && request.auth.uid == 'T8q3EkDSnoWuOE28Qwhe82oR3vA3';
-
+    match /templates/{document} {
+      allow read: if request.auth != null;
     }
   }
 }
-//
-//allow read, write: if request.auth != null;
-//
-//write is exactly equivalent to the combination of create, update, and delete.
-//If you allow write, you are implicitly allowing all three more specific permissions.
-//If you allow only create and update, it does not allow documents to be deleted.

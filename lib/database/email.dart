@@ -1,4 +1,7 @@
 // ignore_for_file: avoid_print
+// trigger email config : secret : smtps://notification@stpaulsrourkela.org:3T6hb5L4hRWFf5z@smtp.gmail.com:465
+
+import 'package:admission/home/home.dart';
 
 import '../home/cubit/student_cubit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -22,8 +25,12 @@ class Email {
     List<String> motherEmail =
         state.motherEmail.value.split(",").map((e) => e.trim()).toList();
 
+    String pdfLink = await Upload.execute(state);
+
     Map<String, dynamic> data = <String, dynamic>{
       "userID": userID,
+      "academicYear": academic_year,
+      "pdfLink": pdfLink,
       "candidateFirstName": state.candidateFirstName.value,
       "candidateMiddleName": state.candidateMiddleName,
       "candidateLastName": state.candidateLastName,

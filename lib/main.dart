@@ -1,15 +1,14 @@
 // ignore_for_file: non_constant_identifier_names, unused_local_variable
 
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'app/view/app.dart';
-import 'package:authentication_repository/authentication_repository.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
-import 'package:flutter/widgets.dart';
-
 import 'app/bloc_observer.dart';
+import 'app/view/app.dart';
+import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

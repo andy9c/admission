@@ -3,6 +3,7 @@
 import 'package:admission/home/cubit/student_cubit.dart';
 import 'package:admission/home/home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
@@ -333,7 +334,7 @@ class PermanentPinCode extends StatelessWidget {
             width: 70.w,
             child: TextFormField(
               inputFormatters: [
-                UpperCaseTextFormatter(),
+                FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
               ],
               enabled: state.setEnabled && !state.sameAsPresentCheckBox.value,
               initialValue: state.setEnabled
