@@ -58,6 +58,5 @@
     "eventarc": {
       "port": 9299
     }
-  },
-  "extensions": {}
+  }
 }

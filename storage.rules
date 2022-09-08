@@ -1,8 +1,8 @@
 rules_version = '2';
 service firebase.storage {
   match /b/{bucket}/o {
-    match /admission_ay_2023_2024/{userPdf} {
-      allow read, create: if request.auth != null && (request.auth.token.email + ".pdf" == userPdf);
+    match /{allPaths=**} {
+      allow read, create: if true;
     }
   }
 }

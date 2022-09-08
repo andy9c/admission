@@ -75,7 +75,7 @@ class LoginForm extends StatelessWidget {
                       ),
                     ),
                     const Text(
-                      "Recommended Browsers : Chrome & Firefox",
+                      "Recommended Browsers : Chrome, Edge, Firefox & Safari",
                       textAlign: TextAlign.center,
                       softWrap: true,
                     ),
