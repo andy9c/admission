@@ -89,6 +89,8 @@ class StudentCubit extends Cubit<StudentState> {
             ),
           );
         } else {
+          await Create.execute(state);
+
           emit(
             state.copyWith(
               loadStatus: LoadStatus.NewStudent,
