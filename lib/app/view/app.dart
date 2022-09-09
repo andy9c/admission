@@ -1,3 +1,5 @@
+import 'package:responsive_framework/responsive_framework.dart';
+
 import '../routes/routes.dart';
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flow_builder/flow_builder.dart';
@@ -37,6 +39,18 @@ class AppView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Sizer(builder: (context, orientation, deviceType) {
       return MaterialApp(
+        builder: (context, child) => ResponsiveWrapper.builder(
+          child,
+          maxWidth: 2500,
+          minWidth: 480,
+          defaultScale: true,
+          breakpoints: [
+            const ResponsiveBreakpoint.resize(480, name: MOBILE),
+            const ResponsiveBreakpoint.autoScale(800, name: TABLET),
+            const ResponsiveBreakpoint.resize(1000, name: DESKTOP),
+            const ResponsiveBreakpoint.autoScale(2460, name: '4K'),
+          ],
+        ),
         theme: theme,
         home: FlowBuilder<AppStatus>(
           state: context.select((AppBloc bloc) => bloc.state.status),
