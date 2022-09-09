@@ -3,7 +3,7 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,9 +21,12 @@ Future<void> main() async {
   await authenticationRepository.user.first;
 
   if (kIsWeb) {
+    // running on the web!
     await FirebaseAppCheck.instance.activate(
       webRecaptchaSiteKey: '6LfUzJgcAAAAABYmoyiNUOqaOcvMj8CXDyHTDr4p',
     );
+  } else {
+    // NOT running on the web! You can check for additional platforms here.
   }
 
   Bloc.observer = AppBlocObserver();
