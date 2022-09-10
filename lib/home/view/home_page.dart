@@ -287,6 +287,8 @@ class _HomePageState extends State<HomePage> {
         create: (_) => _studentCubit,
         child: BlocConsumer<StudentCubit, StudentState>(
           listener: (context, state) {},
+          buildWhen: ((previous, current) =>
+              previous.loadStatus != current.loadStatus),
           builder: (context, state) {
             return (state.loadStatus == LoadStatus.Loading)
                 ? const LoadingState()

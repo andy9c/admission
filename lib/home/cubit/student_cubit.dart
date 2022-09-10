@@ -89,8 +89,6 @@ class StudentCubit extends Cubit<StudentState> {
             ),
           );
         } else {
-          await Create.execute(state);
-
           emit(
             state.copyWith(
               loadStatus: LoadStatus.NewStudent,
@@ -104,13 +102,21 @@ class StudentCubit extends Cubit<StudentState> {
 
   Future<void> submitAndLockPressed() async {
     if (!state.status.isValidated) return;
-    emit(state.copyWith(status: FormzStatus.submissionInProgress));
+    emit(
+      state.copyWith(
+        status: FormzStatus.submissionInProgress,
+        loadStatus: LoadStatus.Loading,
+      ),
+    );
+
     try {
       await Create.execute(state);
-      emit(state.copyWith(
-          loadStatus: LoadStatus.ExistingStudent,
-          setEnabled: false,
-          status: FormzStatus.submissionSuccess));
+      emit(
+        state.copyWith(
+            loadStatus: LoadStatus.ExistingStudent,
+            setEnabled: false,
+            status: FormzStatus.submissionSuccess),
+      );
     } catch (_) {
       emit(state.copyWith(status: FormzStatus.submissionFailure));
     }

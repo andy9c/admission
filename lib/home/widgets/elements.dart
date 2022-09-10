@@ -262,7 +262,7 @@ class SubmitAndLockButton extends StatelessWidget {
       builder: (context, state) {
         String invalidFields = state.invalidFields.toString();
 
-        return state.status.isSubmissionInProgress
+        return state.status == FormzStatus.submissionInProgress
             ? const SizedBox(
                 width: 54,
                 height: 54,
