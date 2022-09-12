@@ -18,6 +18,7 @@ module.exports = {
     sourceType: "module",
   },
   ignorePatterns: [
+    "**/*.js",
     "index.js",
     "/lib/**/*", // Ignore built files.
   ],
