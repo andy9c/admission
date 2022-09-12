@@ -1,2 +1,1 @@
-flutter build web --release
-firebase deploy --only hosting
+cd functions & npm run build & cd .. & flutter clean & flutter build web --release & cd .. & firebase deploy --only hosting
