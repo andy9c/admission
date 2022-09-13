@@ -1,3 +1,4 @@
+import 'package:admission/configuration/configuration.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../database/database.dart';

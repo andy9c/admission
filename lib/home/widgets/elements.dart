@@ -1,5 +1,7 @@
 // ignore_for_file: camel_case_types, avoid_types_as_parameter_names
 
+import 'package:admission/configuration/configuration.dart';
+
 import '../cubit/student_cubit.dart';
 import '../home.dart';
 import 'package:flutter/material.dart';
@@ -294,21 +296,20 @@ class SubmitAndLockButton extends StatelessWidget {
                       spacerWidget(),
                       (state.setEnabled == false ||
                               state.status == FormzStatus.submissionSuccess)
-                          ? ElevatedButton(
-                              key: const Key(
-                                  'studentForm_printForm_elevatedButton'),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => CreatePDF(state)),
-                                );
-                              },
-                              child: const Text('Print Admission Form'),
-                            )
+                          ? printButton(context)
                           : ElevatedButton(
                               key: const Key(
                                   'studentForm_submitAndLock_elevatedButton'),
+                              style: ElevatedButton.styleFrom(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 50,
+                                  vertical: 20,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                backgroundColor: Colors.blueAccent,
+                              ),
                               onPressed: state.status.isValidated
                                   ? () => context
                                       .read<StudentCubit>()
@@ -323,6 +324,59 @@ class SubmitAndLockButton extends StatelessWidget {
       },
     );
   }
+}
+
+Future<dynamic> showPDF(BuildContext context) {
+  return showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        elevation: 16,
+        title: Text("ADMISSION FORM $academicYear"),
+        content: SizedBox(
+          width: 70.w,
+          child: const CreatePDF(),
+        ),
+        actions: [
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 50,
+                vertical: 20,
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              backgroundColor: Colors.blueAccent,
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('DONE'),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+Widget printButton(BuildContext context) {
+  return ElevatedButton(
+    key: const Key('studentForm_printForm_elevatedButton'),
+    style: ElevatedButton.styleFrom(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 50,
+        vertical: 20,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      backgroundColor: Colors.blueAccent,
+    ),
+    onPressed: () => showPDF(context),
+    child: const Text('Print Admission Form'),
+  );
 }
 
 Widget spacerWidget() {

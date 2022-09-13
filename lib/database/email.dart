@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print
 // trigger email config : secret : smtps://notification@stpaulsrourkela.org:3T6hb5L4hRWFf5z@smtp.gmail.com:465
 
-import 'package:admission/home/home.dart';
+import 'package:admission/configuration/configuration.dart';
 
 import '../home/cubit/student_cubit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -29,7 +29,7 @@ class Email {
 
     Map<String, dynamic> data = <String, dynamic>{
       "userID": userID,
-      "academicYear": academic_year,
+      "academicYear": academicYear,
       "pdfLink": pdfLink,
       // "candidateFirstName": state.candidateFirstName.value,
       // "candidateMiddleName": state.candidateMiddleName,

@@ -1,11 +1,11 @@
+import 'package:admission/configuration/configuration.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-import '../../home/home.dart';
 import '../login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-import 'package:sizer/sizer.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({Key? key}) : super(key: key);
@@ -28,44 +28,70 @@ class LoginForm extends StatelessWidget {
           padding: const EdgeInsets.all(0.0),
           shrinkWrap: false,
           children: <Widget>[
-            const SizedBox(height: 80),
-            Image.asset(
-              'assets/st_pauls_logo.png',
-              height: 120,
+            const SizedBox(height: 20),
+            Align(
+              alignment: Alignment.center,
+              child: Image.asset(
+                assetSchoolLogo,
+                height: 180,
+              ),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              configSchoolName,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.passionOne(
+                fontSize: 24,
+                color: Colors.black87,
+              ),
             ),
             const SizedBox(height: 16),
             Align(
               alignment: Alignment.center,
-              child: SizedBox(
-                width: 70.w,
-                child: _EmailInput(),
+              child: Container(
+                width: 320,
+                padding: const EdgeInsets.symmetric(
+                  vertical: 24,
+                  horizontal: 16,
+                ),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.grey,
+                  ),
+                  color: Colors.white30,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Column(
+                  children: [
+                    _EmailInput(),
+                    const SizedBox(height: 8),
+                    _PasswordInput(),
+                    const SizedBox(height: 8),
+                    SizedBox(
+                      width: 320,
+                      child: _LoginButton(),
+                    ),
+                  ],
+                ),
               ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 16),
             Align(
               alignment: Alignment.center,
-              child: SizedBox(
-                width: 70.w,
-                child: _PasswordInput(),
-              ),
-            ),
-            const SizedBox(height: 8),
-            Align(
-              alignment: Alignment.center,
-              child: SizedBox(
-                width: 70.w,
-                child: _LoginButton(),
-              ),
-            ),
-            const SizedBox(height: 8),
-            Align(
-              alignment: Alignment.center,
-              child: SizedBox(
-                width: 70.w,
+              child: Container(
+                width: 320,
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.grey,
+                  ),
+                  color: Colors.white54,
+                  borderRadius: BorderRadius.circular(12),
+                ),
                 child: Column(
                   children: [
                     Text(
-                      "Last Date Of Registration : $last_date_of_registration",
+                      configNoticeLine1,
                       textAlign: TextAlign.center,
                       softWrap: true,
                       style: const TextStyle(
@@ -74,8 +100,8 @@ class LoginForm extends StatelessWidget {
                         fontStyle: FontStyle.italic,
                       ),
                     ),
-                    const Text(
-                      "Recommended Browsers : Chrome, Edge, Firefox & Safari",
+                    Text(
+                      configNoticeLine2,
                       textAlign: TextAlign.center,
                       softWrap: true,
                     ),

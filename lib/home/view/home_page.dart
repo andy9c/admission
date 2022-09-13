@@ -1,3 +1,5 @@
+import 'package:admission/configuration/configuration.dart';
+
 import '../../app/app.dart';
 import '../cubit/student_cubit.dart';
 import '../home.dart';
@@ -78,6 +80,22 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
+    Widget printPDF() {
+      return Align(
+        alignment: const Alignment(0, -1 / 3),
+        child: Column(
+          children: <Widget>[
+            const SizedBox(height: 80),
+            Avatar(photo: user.photo),
+            const SizedBox(height: 4),
+            registrationEmailID(),
+            spacerWidget(),
+            printButton(context),
+          ],
+        ),
+      );
+    }
+
     Widget loadStudent(bool setEnabled) {
       return Align(
         alignment: const Alignment(0, -1 / 3),
@@ -87,6 +105,7 @@ class _HomePageState extends State<HomePage> {
           child: ListView(
             controller: scrollController,
             padding: const EdgeInsets.all(0.0),
+            physics: const AlwaysScrollableScrollPhysics(),
             shrinkWrap: false,
             children: <Widget>[
               const SizedBox(height: 80),
@@ -101,7 +120,7 @@ class _HomePageState extends State<HomePage> {
               dividerWidget(),
               spacerWidget(),
               sectionHeading(
-                  "All information typed here is automatically converted to capital letters. Email addresses are valid both in capital and small letters. Example: hello@gmail.com is the same as HELLO@GMAIL.COM. If you don't receive an acknowledgement email after online submission, please check your spam folder.\n\nFor successfully completing the application process \n\n1) Fill in the details here and submit the online application form on or before $last_date_of_registration\n2) Take print out of the admission form\n3) Submit the printed form in the school office on or before $last_date_of_submission"),
+                  "All information typed here is automatically converted to capital letters. Email addresses are valid both in capital and small letters. Example: hello@gmail.com is the same as HELLO@GMAIL.COM. If you don't receive an acknowledgement email after online submission, please check your spam folder.\n\nFor successfully completing the application process \n\n1) Fill in the details here and submit the online application form on or before $lastDateOfRegistration\n2) Take print out of the admission form\n3) Submit the printed form in the school office on or before $lastDateOfSubmission"),
               spacerWidget(),
               dividerWidget(),
               spacerWidget(),
@@ -272,7 +291,7 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Admission Form $academic_year'),
+        title: Text('Admission Form $academicYear'),
         backgroundColor: const Color(0xFFA02B29), // appbar color.
         foregroundColor: Colors.white,
         actions: <Widget>[
@@ -293,7 +312,7 @@ class _HomePageState extends State<HomePage> {
             return (state.loadStatus == LoadStatus.Loading)
                 ? const LoadingState()
                 : (state.loadStatus == LoadStatus.ExistingStudent)
-                    ? loadStudent(false)
+                    ? printPDF() //loadStudent(false)
                     : (state.loadStatus == LoadStatus.NewStudent &&
                             Expired.hasExpired() == false)
                         ? loadStudent(true)

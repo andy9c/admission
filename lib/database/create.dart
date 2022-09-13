@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_print
 
+import 'package:admission/configuration/configuration.dart';
+
 import '../home/cubit/student_cubit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dart_date/dart_date.dart';

@@ -1,12 +1,12 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'package:admission/configuration/configuration.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
 import '../cubit/student_cubit.dart';
-import '../home.dart';
 
 pw.Widget buildCustomHeadline(StudentState state) => pw.Header(
       level: 0,
@@ -14,7 +14,7 @@ pw.Widget buildCustomHeadline(StudentState state) => pw.Header(
         mainAxisAlignment: pw.MainAxisAlignment.center,
         children: [
           pw.Text(
-            'ADMISSION FORM $academic_year (${state.admissionSoughtForClass.value})',
+            'ADMISSION FORM $academicYear (${state.admissionSoughtForClass.value})',
             style: pw.TextStyle(
               fontSize: 12,
               fontWeight: pw.FontWeight.bold,

@@ -1,17 +1,13 @@
-// ignore_for_file: depend_on_referenced_packages
+// ignore_for_file: file_names
 
 import 'package:admission/configuration/configuration.dart';
-import 'package:admission/home/widgets/widgets.dart';
 
-import '../home/cubit/student_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
 
-import 'package:pdf/pdf.dart';
-
-class Upload {
-  static Future<String> execute(StudentState state) async {
+class ReadPDF {
+  static Future<Uint8List> execute() async {
     // Create a storage reference from our app
     final storageRef = FirebaseStorage.instance.ref();
 
@@ -21,9 +17,8 @@ class Upload {
         ? "$rootStorageCollection/null.pdf"
         : "$rootStorageCollection/${FirebaseAuth.instance.currentUser!.email}.pdf");
 
-    Uint8List data = await generatePdf(PdfPageFormat.a4, state);
+    Uint8List data = await pdfRef.getData() ?? Uint8List.fromList([1]);
 
-    await pdfRef.putData(data);
-    return await pdfRef.getDownloadURL();
+    return data;
   }
 }

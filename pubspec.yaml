@@ -36,6 +36,7 @@ dependencies:
   easy_mask: ^2.0.1
   equatable: ^2.0.5
   expansion_datagrid: ^1.0.7
+  firebase_analytics: ^9.3.4
   firebase_app_check: ^0.0.7
   firebase_auth: ^3.7.0
   firebase_core: ^1.21.1
@@ -56,7 +57,9 @@ dependencies:
   jiffy: ^5.0.0
   path: ^1.8.1
   path_provider: ^2.0.11
-  printing: ^5.9.2
+  pdf: ^3.8.3
+  printing: ^5.9.3
+  responsive_framework: ^0.2.0
   sizer: ^2.0.15
   syncfusion_flutter_datagrid: ^20.2.45
 

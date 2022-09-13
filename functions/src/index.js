@@ -3,6 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
+// import { getRemoteConfig } from "firebase/remote-config";
 
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -24,3 +25,4 @@ const defaultAnalytics = getAnalytics(app);
 const defaultFirestore = getFirestore(app);
 // Initialize Cloud Storage and get a reference to the service
 const defaultStorage = getStorage(app);
+// const defaultRemoteConfig = getRemoteConfig(app);
