@@ -49,11 +49,31 @@ class _HomePageState extends State<HomePage> {
     Widget sectionHeading(String heading) {
       return Align(
         alignment: Alignment.center,
-        child: SizedBox(
-          width: 70.w,
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            vertical: 0,
+            horizontal: 5.w,
+          ),
           child: Text(
             heading,
-            style: textTheme.headline6,
+            style: textTheme.headlineSmall,
+            textAlign: TextAlign.center,
+          ),
+        ),
+      );
+    }
+
+    Widget sectionInfo(String heading) {
+      return Align(
+        alignment: Alignment.center,
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            vertical: 0,
+            horizontal: 5.w,
+          ),
+          child: Text(
+            heading,
+            style: textTheme.titleMedium,
             textAlign: TextAlign.center,
           ),
         ),
@@ -116,13 +136,15 @@ class _HomePageState extends State<HomePage> {
               registrationEmailID(),
               setEnabled ? Container() : const SubmitAndLockButton(),
               spacerWidget(),
+              instructionButton(context),
+              spacerWidget(),
               spacerWidget(),
               spacerWidget(),
               spacerWidget(), sectionHeading("General Information"),
               dividerWidget(),
               spacerWidget(),
-              sectionHeading(
-                  "All information typed here is automatically converted to capital letters. Email addresses are valid both in capital and small letters. Example: hello@gmail.com is the same as HELLO@GMAIL.COM. If you don't receive an acknowledgement email after online submission, please check your spam folder.\n\nFor successfully completing the application process \n\n1) Fill in the details here and submit the online application form on or before $lastDateOfRegistration\n2) Take print out of the admission form\n3) Submit the printed form in the school office on or before $lastDateOfSubmission"),
+              sectionInfo(
+                  "All information typed here is automatically converted to capital letters. Email addresses are valid both in capital and small letters. Example: hello@gmail.com is the same as HELLO@GMAIL.COM. If you don't receive an acknowledgement email after online submission, please check your spam folder.\n\nFor successfully completing the application process, please read the instructions carefully (click on the orange button).\nHere are some important information.\n\n1) Fill in the details here and submit the online application form on or before $lastDateOfRegistration\n2) Submit the printed form in the school office between 11-OCT-2022 and 22-OCT-2022"),
               spacerWidget(),
               dividerWidget(),
               spacerWidget(),
@@ -261,14 +283,14 @@ class _HomePageState extends State<HomePage> {
               sectionHeading("Self Declaration"),
               dividerWidget(),
               spacerWidget(),
-              sectionHeading(
+              sectionInfo(
                   "1) I understand and agree that the registration of my ward does not guarantee admission to the school."),
               spacerWidget(),
-              sectionHeading(
+              sectionInfo(
                   "2) I hereby declare that the information given above is true to the best of my knowledge. I promise to abide by the admission procedure of the school. I understand that my application will be rejected on any false information."),
               spacerWidget(),
               !setEnabled
-                  ? sectionHeading(
+                  ? sectionInfo(
                       "3) I understand and agree that this admission from is permanently locked and no further changes can be made at any point of time, in the admission process.")
                   : Container(),
               spacerWidget(),
@@ -279,7 +301,7 @@ class _HomePageState extends State<HomePage> {
               setEnabled ? dividerWidget() : Container(),
               setEnabled ? spacerWidget() : Container(),
               setEnabled
-                  ? sectionHeading(
+                  ? sectionInfo(
                       "This admission application form once submitted will be permanently locked. No further changes can be made at any point of time, in the admission process.")
                   : Container(),
               setEnabled ? spacerWidget() : Container(),
@@ -298,6 +320,11 @@ class _HomePageState extends State<HomePage> {
         foregroundColor: Colors.white,
         actions: <Widget>[
           IconButton(
+            key: const Key('homePage_info_iconButton'),
+            icon: const Icon(Icons.picture_as_pdf),
+            onPressed: () => showInfoPDF(context),
+          ),
+          IconButton(
             key: const Key('homePage_logout_iconButton'),
             icon: const Icon(Icons.exit_to_app),
             onPressed: () => context.read<AppBloc>().add(AppLogoutRequested()),
@@ -308,8 +335,6 @@ class _HomePageState extends State<HomePage> {
         create: (_) => _studentCubit,
         child: BlocConsumer<StudentCubit, StudentState>(
           listener: (context, state) {},
-          buildWhen: ((previous, current) =>
-              previous.loadStatus != current.loadStatus),
           builder: (context, state) {
             return (state.loadStatus == LoadStatus.Loading)
                 ? const LoadingState()

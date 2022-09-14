@@ -22,8 +22,11 @@ class RelationshipStudentName extends StatelessWidget {
 
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: Visibility(
               visible: shouldEnable,
               child: TextFormField(
@@ -76,8 +79,11 @@ class RelationshipStudentRegNo extends StatelessWidget {
 
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: Visibility(
               visible: shouldEnable,
               child: TextFormField(
@@ -132,8 +138,11 @@ class RelationshipStudentClassSection extends StatelessWidget {
 
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: Visibility(
               visible: shouldEnable,
               child: TextFormField(
@@ -184,8 +193,11 @@ class RelationshipWithStudentSelection extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: DropdownButtonFormField<String>(
               isExpanded: true,
               value: state.relationshipWithStudent == ""
@@ -269,8 +281,11 @@ class RelationshipStudentYearOfJoining extends StatelessWidget {
 
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: Visibility(
               visible: shouldEnable,
               child: TextFormField(
@@ -327,8 +342,11 @@ class RelationshipStudentYearOfLeaving extends StatelessWidget {
 
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: Visibility(
               visible: shouldEnable,
               child: TextFormField(

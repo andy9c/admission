@@ -27,8 +27,11 @@ class PermanentLocation extends StatelessWidget {
 
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding:  EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: TextFormField(
               inputFormatters: [
                 UpperCaseTextFormatter(),
@@ -89,8 +92,11 @@ class PermanentCity extends StatelessWidget {
 
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding:  EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: TextFormField(
               inputFormatters: [
                 UpperCaseTextFormatter(),
@@ -148,8 +154,11 @@ class PermanentPostOffice extends StatelessWidget {
 
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding:  EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: TextFormField(
               inputFormatters: [
                 UpperCaseTextFormatter(),
@@ -207,8 +216,11 @@ class PermanentDistrict extends StatelessWidget {
 
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding:  EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: TextFormField(
               inputFormatters: [
                 UpperCaseTextFormatter(),
@@ -267,8 +279,11 @@ class PermanentState extends StatelessWidget {
 
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding:  EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: TextFormField(
               inputFormatters: [
                 UpperCaseTextFormatter(),
@@ -330,8 +345,11 @@ class PermanentPinCode extends StatelessWidget {
 
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding:  EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: TextFormField(
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),

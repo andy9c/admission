@@ -18,8 +18,11 @@ class FatherFirstName extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: TextFormField(
               inputFormatters: [
                 NameUpperCaseTextFormatter(),
@@ -65,8 +68,11 @@ class FatherMiddleName extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: TextFormField(
               inputFormatters: [
                 NameUpperCaseTextFormatter(),
@@ -109,8 +115,11 @@ class FatherLastName extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: TextFormField(
               inputFormatters: [
                 NameUpperCaseTextFormatter(),
@@ -153,8 +162,11 @@ class FatherProfessionSelection extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: DropdownButtonFormField<String>(
               isExpanded: true,
               value: state.fatherProfession.value,
@@ -213,8 +225,11 @@ class FatherQualificationSelection extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: DropdownButtonFormField<String>(
               isExpanded: true,
               value: state.fatherQualification.value,
@@ -273,8 +288,11 @@ class FatherAdditionalQualification extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: TextFormField(
               inputFormatters: [
                 UpperCaseTextFormatter(),
@@ -319,8 +337,11 @@ class FatherHomeContact extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: TextFormField(
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[0-9\+\,]')),
@@ -366,8 +387,11 @@ class FatherOfficeContact extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: TextFormField(
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[0-9\+\,]')),
@@ -412,8 +436,11 @@ class FatherEmail extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: TextFormField(
               inputFormatters: [
                 EmailTextFormatter(),

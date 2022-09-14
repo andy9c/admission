@@ -18,8 +18,11 @@ class PresentLocation extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: TextFormField(
               inputFormatters: [
                 UpperCaseTextFormatter(),
@@ -65,8 +68,11 @@ class PresentCity extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: TextFormField(
               inputFormatters: [
                 UpperCaseTextFormatter(),
@@ -108,8 +114,11 @@ class PresentPostOffice extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: TextFormField(
               inputFormatters: [
                 UpperCaseTextFormatter(),
@@ -152,8 +161,11 @@ class PresentDistrict extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: TextFormField(
               inputFormatters: [
                 UpperCaseTextFormatter(),
@@ -196,8 +208,11 @@ class PresentState extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: TextFormField(
               inputFormatters: [
                 UpperCaseTextFormatter(),
@@ -242,8 +257,11 @@ class PresentPinCode extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: TextFormField(
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),

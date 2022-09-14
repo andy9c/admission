@@ -8,9 +8,10 @@ int expYear = 2022;
 int expMonth = 10;
 // if last date of application is 26 then expDay = last day + 1
 // therefore expDay = 26 + 1 = 27
-int expDay = 11;
+int expDay = 21;
 
 String lastDateOfRegistration = "";
+String startDateOfSubmission = "";
 String lastDateOfSubmission = "";
 
 int calendarFirstYear = 2000;
@@ -37,9 +38,9 @@ void configurationUpdate() {
           DateTime(expYear, expMonth, expDay - 1), [d, '-', M, '-', yyyy])
       .toUpperCase();
 
-  lastDateOfSubmission = formatDate(
-          DateTime(expYear, expMonth, expDay + 6), [d, '-', M, '-', yyyy])
-      .toUpperCase();
+  lastDateOfSubmission =
+      formatDate(DateTime(expYear, expMonth, expDay), [d, '-', M, '-', yyyy])
+          .toUpperCase();
 
   calendarLastYear = expYear + 1;
 

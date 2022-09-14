@@ -19,8 +19,11 @@ class CandidateFirstName extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: TextFormField(
               inputFormatters: [
                 NameUpperCaseTextFormatter(),
@@ -66,8 +69,11 @@ class CandidateMiddleName extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: TextFormField(
               inputFormatters: [
                 NameUpperCaseTextFormatter(),
@@ -111,8 +117,11 @@ class CandidateLastName extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: TextFormField(
               inputFormatters: [
                 NameUpperCaseTextFormatter(),
@@ -156,8 +165,11 @@ class DateOfBirth extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: TextFormField(
               inputFormatters: [
                 UpperCaseTextFormatter(),
@@ -224,8 +236,11 @@ class PlaceOfBirth extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: TextFormField(
               inputFormatters: [
                 UpperCaseTextFormatter(),
@@ -269,8 +284,11 @@ class GenderSelection extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: DropdownButtonFormField<String>(
               isExpanded: true,
               value: state.gender.value,
@@ -326,8 +344,11 @@ class MotherTongueSelection extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: DropdownButtonFormField<String>(
               isExpanded: true,
               value: state.motherTongue.value,
@@ -385,8 +406,11 @@ class BloodGroupSelection extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: DropdownButtonFormField<String>(
               isExpanded: true,
               value: state.bloodGroup.value,
@@ -442,8 +466,11 @@ class ReligionSelection extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: DropdownButtonFormField<String>(
               isExpanded: true,
               value: state.religion.value,
@@ -499,8 +526,11 @@ class SocialCategorySelection extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: DropdownButtonFormField<String>(
               isExpanded: true,
               value: state.socialCategory.value,
@@ -568,8 +598,11 @@ class AadharCard extends StatelessWidget {
         }
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: TextFormField(
               inputFormatters: [
                 TextInputMask(
@@ -624,8 +657,11 @@ class LastSchoolAttended extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: TextFormField(
               inputFormatters: [
                 UpperCaseTextFormatter(),
@@ -672,8 +708,11 @@ class LastClassAttended extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: TextFormField(
               inputFormatters: [
                 UpperCaseTextFormatter(),
@@ -720,8 +759,11 @@ class AdmissionSoughtSelection extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: DropdownButtonFormField<String>(
               isExpanded: true,
               value: state.admissionSoughtForClass.value,

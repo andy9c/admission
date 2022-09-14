@@ -2,6 +2,8 @@
 
 import 'package:admission/configuration/configuration.dart';
 import 'package:admission/home/view/create_pdf.dart';
+import 'package:pdf/pdf.dart';
+import 'package:printing/printing.dart';
 
 import '../cubit/student_cubit.dart';
 import 'package:flutter/material.dart';
@@ -102,8 +104,11 @@ class IAgreeCheckBox extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: Align(
               alignment: Alignment.center,
               child: SizedBox(
@@ -155,8 +160,11 @@ class sameAsPresentCheckBox extends StatelessWidget {
       builder: (context, state) {
         return Align(
           alignment: Alignment.center,
-          child: SizedBox(
-            width: 70.w,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
             child: Align(
               alignment: Alignment.center,
               child: SizedBox(
@@ -385,6 +393,48 @@ Future<dynamic> showPDF(BuildContext context, StudentState state) {
   );
 }
 
+Future<dynamic> showInfoPDF(BuildContext context) async {
+  final ByteData bytes = await rootBundle.load('assets/instructions.pdf');
+  final Uint8List data = bytes.buffer.asUint8List();
+
+  return showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        elevation: 16,
+        title: Text("ADMISSION INSTRUCTIONS $academicYear"),
+        content: SizedBox(
+          width: 70.w,
+          child: PdfPreview(
+            initialPageFormat: PdfPageFormat.a4.portrait,
+            canDebug: false,
+            build: (format) => data,
+          ),
+        ),
+        actions: [
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 50,
+                vertical: 20,
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              backgroundColor: Colors.blueAccent,
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('DONE'),
+          ),
+        ],
+      );
+    },
+  );
+}
+
 Widget printButton(BuildContext context, StudentState state) {
   return ElevatedButton(
     key: const Key('studentForm_printForm_elevatedButton'),
@@ -403,24 +453,52 @@ Widget printButton(BuildContext context, StudentState state) {
   );
 }
 
+Widget instructionButton(BuildContext context) {
+  return Align(
+    alignment: Alignment.center,
+    child: Padding(
+      padding: EdgeInsets.symmetric(
+        vertical: 0,
+        horizontal: 5.w,
+      ),
+      child: Column(
+        children: <Widget>[
+          ElevatedButton(
+            key: const Key('studentForm_instruction_elevatedButton'),
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 50,
+                vertical: 20,
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              backgroundColor: Colors.deepOrangeAccent,
+            ),
+            onPressed: () => showInfoPDF(context),
+            child: const Text('Read instructions'),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
 Widget spacerWidget() {
   return const SizedBox(height: 16);
 }
 
 Widget dividerWidget() {
-  return Align(
-    alignment: Alignment.center,
-    child: SizedBox(
-      width: 70.w,
-      child: const Align(
-        alignment: Alignment.center,
-        child: Divider(
-          height: 20,
-          thickness: 5,
-          indent: 20,
-          endIndent: 20,
-        ),
-      ),
+  return Padding(
+    padding: EdgeInsets.symmetric(
+      vertical: 0,
+      horizontal: 5.w,
+    ),
+    child: const Divider(
+      height: 20,
+      thickness: 5,
+      indent: 20,
+      endIndent: 20,
     ),
   );
 }
