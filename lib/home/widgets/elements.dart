@@ -1,9 +1,9 @@
 // ignore_for_file: camel_case_types, avoid_types_as_parameter_names
 
 import 'package:admission/configuration/configuration.dart';
+import 'package:admission/home/view/create_pdf.dart';
 
 import '../cubit/student_cubit.dart';
-import '../home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -296,7 +296,28 @@ class SubmitAndLockButton extends StatelessWidget {
                       spacerWidget(),
                       (state.setEnabled == false ||
                               state.status == FormzStatus.submissionSuccess)
-                          ? printButton(context)
+                          // ? ElevatedButton(
+                          //     style: ElevatedButton.styleFrom(
+                          //       padding: const EdgeInsets.symmetric(
+                          //         horizontal: 50,
+                          //         vertical: 20,
+                          //       ),
+                          //       shape: RoundedRectangleBorder(
+                          //         borderRadius: BorderRadius.circular(10),
+                          //       ),
+                          //       backgroundColor: Colors.blueAccent,
+                          //     ),
+                          //     onPressed: () => Navigator.push(
+                          //       context,
+                          //       MaterialPageRoute(
+                          //         builder: (context) => CreatePDF(
+                          //           state: state,
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     child: const Text('Print Admission Form'),
+                          //   )
+                          ? printButton(context, state)
                           : ElevatedButton(
                               key: const Key(
                                   'studentForm_submitAndLock_elevatedButton'),
@@ -326,7 +347,7 @@ class SubmitAndLockButton extends StatelessWidget {
   }
 }
 
-Future<dynamic> showPDF(BuildContext context) {
+Future<dynamic> showPDF(BuildContext context, StudentState state) {
   return showDialog(
     context: context,
     builder: (context) {
@@ -335,10 +356,13 @@ Future<dynamic> showPDF(BuildContext context) {
           borderRadius: BorderRadius.circular(12),
         ),
         elevation: 16,
-        title: Text("ADMISSION FORM $academicYear"),
+        title: Text(
+            "ADMISSION FORM $academicYear (${state.admissionSoughtForClass.value})"),
         content: SizedBox(
           width: 70.w,
-          child: const CreatePDF(),
+          child: CreatePDF(
+            state: state,
+          ),
         ),
         actions: [
           ElevatedButton(
@@ -361,7 +385,7 @@ Future<dynamic> showPDF(BuildContext context) {
   );
 }
 
-Widget printButton(BuildContext context) {
+Widget printButton(BuildContext context, StudentState state) {
   return ElevatedButton(
     key: const Key('studentForm_printForm_elevatedButton'),
     style: ElevatedButton.styleFrom(
@@ -374,7 +398,7 @@ Widget printButton(BuildContext context) {
       ),
       backgroundColor: Colors.blueAccent,
     ),
-    onPressed: () => showPDF(context),
+    onPressed: () => showPDF(context, state),
     child: const Text('Print Admission Form'),
   );
 }

@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
+import 'package:sizer/sizer.dart';
 
 import '../cubit/student_cubit.dart';
 
@@ -43,11 +44,56 @@ Future<Uint8List> generatePdf(PdfPageFormat format, StudentState state) async {
     pw.MultiPage(
       pageFormat: format,
       build: (context) => [
-        pw.Image(
-          pw.MemoryImage(
-            byteList,
-          ),
-          fit: pw.BoxFit.scaleDown,
+        pw.Row(
+          children: [
+            pw.Flexible(
+              flex: 4,
+              child: pw.Image(
+                pw.MemoryImage(
+                  byteList,
+                ),
+                fit: pw.BoxFit.scaleDown,
+              ),
+            ),
+            pw.Flexible(
+              flex: 1,
+              child: pw.Padding(
+                padding: const pw.EdgeInsets.all(8),
+                child: pw.SizedBox(
+                  width: 80.w,
+                  height: 12.h,
+                  child: pw.Stack(
+                    children: [
+                      pw.Rectangle(
+                        fillColor: PdfColor.fromHex("#FFFFFF"),
+                        strokeColor: PdfColor.fromHex("#000000"),
+                        strokeWidth: 1.0,
+                      ),
+                      pw.RichText(
+                        textAlign: pw.TextAlign.center,
+                        softWrap: true,
+                        text: pw.TextSpan(
+                          style: const pw.TextStyle(
+                            fontSize: 10,
+                          ),
+                          children: [
+                            pw.TextSpan(
+                              text:
+                                  "\n\n\nCandidate's Passport Size Photograph",
+                              style: pw.TextStyle(
+                                fontStyle: pw.FontStyle.italic,
+                                fontWeight: pw.FontWeight.normal,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
         pw.SizedBox(height: space),
         buildCustomHeadline(state),

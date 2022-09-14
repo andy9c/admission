@@ -21,7 +21,7 @@ class Upload {
         ? "$rootStorageCollection/null.pdf"
         : "$rootStorageCollection/${FirebaseAuth.instance.currentUser!.email}.pdf");
 
-    Uint8List data = await generatePdf(PdfPageFormat.a4, state);
+    Uint8List data = await generatePdf(PdfPageFormat.a4.portrait, state);
 
     await pdfRef.putData(data);
     return await pdfRef.getDownloadURL();

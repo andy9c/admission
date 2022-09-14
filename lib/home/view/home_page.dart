@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element
+
 import 'package:admission/configuration/configuration.dart';
 
 import '../../app/app.dart';
@@ -90,7 +92,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 4),
             registrationEmailID(),
             spacerWidget(),
-            printButton(context),
+            //printButton(context),
           ],
         ),
       );
@@ -312,7 +314,7 @@ class _HomePageState extends State<HomePage> {
             return (state.loadStatus == LoadStatus.Loading)
                 ? const LoadingState()
                 : (state.loadStatus == LoadStatus.ExistingStudent)
-                    ? printPDF() //loadStudent(false)
+                    ? loadStudent(false) //printPDF()
                     : (state.loadStatus == LoadStatus.NewStudent &&
                             Expired.hasExpired() == false)
                         ? loadStudent(true)
