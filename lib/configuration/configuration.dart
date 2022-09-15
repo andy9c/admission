@@ -21,6 +21,8 @@ String configSchoolName = "St Paul's School, Rourkela";
 String configNoticeLine1 = "";
 String configNoticeLine2 =
     "Recommended Browsers : Chrome, Edge, Firefox & Safari";
+String configNoticeLine3 =
+    "Trouble logging in ?\nPlease contact +91 8895219339";
 String configAppBarName = "";
 
 String assetSchoolLogo = "assets/st_pauls_logo.png";

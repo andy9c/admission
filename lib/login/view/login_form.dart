@@ -36,37 +36,57 @@ class LoginForm extends StatelessWidget {
                 height: 180,
               ),
             ),
-            const SizedBox(height: 16),
-            Text(
-              configSchoolName,
-              textAlign: TextAlign.center,
-              style: GoogleFonts.passionOne(
-                fontSize: 24,
-                color: Colors.black87,
-              ),
-            ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 32),
+            // Text(
+            //   configSchoolName,
+            //   textAlign: TextAlign.center,
+            //   style: GoogleFonts.passionOne(
+            //     fontSize: 24,
+            //     color: Colors.black87,
+            //   ),
+            // ),
+            // const SizedBox(height: 16),
             Align(
               alignment: Alignment.center,
               child: Container(
-                width: 320,
+                width: 340,
                 padding: const EdgeInsets.symmetric(
-                  vertical: 24,
-                  horizontal: 16,
+                  vertical: 40,
+                  horizontal: 40,
                 ),
                 decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.grey,
-                  ),
-                  color: Colors.white30,
+                  // border: Border.all(
+                  //   color: Colors.grey,
+                  // ),
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black12,
+                      offset: Offset(
+                        0.0,
+                        0.0,
+                      ),
+                      blurRadius: 5.0,
+                      spreadRadius: 0.5,
+                    ),
+                  ],
                 ),
                 child: Column(
                   children: [
+                    Text(
+                      configSchoolName,
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.passionOne(
+                        fontSize: 24,
+                        color: Colors.black87,
+                      ),
+                    ),
+                    const SizedBox(height: 32),
                     _EmailInput(),
                     const SizedBox(height: 8),
                     _PasswordInput(),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 32),
                     SizedBox(
                       width: 320,
                       child: _LoginButton(),
@@ -79,12 +99,12 @@ class LoginForm extends StatelessWidget {
             Align(
               alignment: Alignment.center,
               child: Container(
-                width: 320,
-                padding: const EdgeInsets.all(8),
+                width: 340,
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.grey,
-                  ),
+                  // border: Border.all(
+                  //   color: Colors.grey,
+                  // ),
                   color: Colors.white54,
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -95,7 +115,7 @@ class LoginForm extends StatelessWidget {
                       textAlign: TextAlign.center,
                       softWrap: true,
                       style: const TextStyle(
-                        color: Colors.red,
+                        color: Colors.redAccent,
                         fontWeight: FontWeight.bold,
                         fontStyle: FontStyle.italic,
                       ),
@@ -104,6 +124,45 @@ class LoginForm extends StatelessWidget {
                       configNoticeLine2,
                       textAlign: TextAlign.center,
                       softWrap: true,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            Align(
+              alignment: Alignment.center,
+              child: Container(
+                width: 340,
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  // border: Border.all(
+                  //   color: Colors.grey,
+                  // ),
+                  color: Colors.white54,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Column(
+                  children: const [
+                    Text(
+                      "Trouble Logging in ?",
+                      textAlign: TextAlign.center,
+                      softWrap: true,
+                      style: TextStyle(
+                        color: Colors.blueGrey,
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
+                    Text(
+                      "Please Contact +91 8895219339",
+                      textAlign: TextAlign.center,
+                      softWrap: true,
+                      style: TextStyle(
+                        color: Colors.blueAccent,
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
+                      ),
                     ),
                   ],
                 ),
@@ -142,6 +201,8 @@ class _EmailInput extends StatelessWidget {
           keyboardType: TextInputType.emailAddress,
           textInputAction: TextInputAction.next,
           decoration: InputDecoration(
+            fillColor: Colors.white,
+            prefixIcon: const Icon(Icons.person),
             labelText: 'registration ID',
             helperText: '',
             errorText: state.email.invalid ? 'invalid registration ID' : null,
@@ -165,6 +226,8 @@ class _PasswordInput extends StatelessWidget {
               context.read<LoginCubit>().passwordChanged(password),
           obscureText: true,
           decoration: InputDecoration(
+            fillColor: Colors.white,
+            prefixIcon: const Icon(Icons.lock),
             labelText: 'password',
             helperText: '',
             errorText: state.password.invalid ? 'invalid password' : null,
