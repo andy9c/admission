@@ -346,8 +346,8 @@ Future<Uint8List> generatePdf(PdfPageFormat format, StudentState state) async {
                         text: "Aadhar Enrollment ID\n",
                         style: pw.TextStyle(fontWeight: pw.FontWeight.bold),
                       ),
-                      const pw.TextSpan(
-                        text: '',
+                      pw.TextSpan(
+                        text: state.aadharEnrollmentID.value,
                       ),
                     ],
                   ),
