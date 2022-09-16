@@ -79,7 +79,7 @@ Future<Uint8List> generatePdf(PdfPageFormat format, StudentState state) async {
                           children: [
                             pw.TextSpan(
                               text:
-                                  "\n\n\nCandidate's Passport Size Photograph",
+                                  "\n\n\nCandidate's Passport Size Photograph (3.5cm X 4.5cm)",
                               style: pw.TextStyle(
                                 fontStyle: pw.FontStyle.italic,
                                 fontWeight: pw.FontWeight.normal,
@@ -343,11 +343,11 @@ Future<Uint8List> generatePdf(PdfPageFormat format, StudentState state) async {
                     style: const pw.TextStyle(fontSize: 12),
                     children: [
                       pw.TextSpan(
-                        text: "Last School Attended\n",
+                        text: "Aadhar Enrollment ID\n",
                         style: pw.TextStyle(fontWeight: pw.FontWeight.bold),
                       ),
-                      pw.TextSpan(
-                        text: state.lastSchoolAttended.value.toString(),
+                      const pw.TextSpan(
+                        text: '',
                       ),
                     ],
                   ),
@@ -363,6 +363,22 @@ Future<Uint8List> generatePdf(PdfPageFormat format, StudentState state) async {
           children: [
             pw.TableRow(
               children: [
+                pw.RichText(
+                  textAlign: pw.TextAlign.center,
+                  softWrap: true,
+                  text: pw.TextSpan(
+                    style: const pw.TextStyle(fontSize: 12),
+                    children: [
+                      pw.TextSpan(
+                        text: "Last School Attended\n",
+                        style: pw.TextStyle(fontWeight: pw.FontWeight.bold),
+                      ),
+                      pw.TextSpan(
+                        text: state.lastSchoolAttended.value.toString(),
+                      ),
+                    ],
+                  ),
+                ),
                 pw.RichText(
                   textAlign: pw.TextAlign.center,
                   softWrap: true,
@@ -395,7 +411,6 @@ Future<Uint8List> generatePdf(PdfPageFormat format, StudentState state) async {
                     ],
                   ),
                 ),
-                pw.Text('', textAlign: pw.TextAlign.center),
               ],
             ),
           ],

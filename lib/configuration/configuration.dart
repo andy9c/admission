@@ -32,8 +32,8 @@ String rootStorageCollection = "";
 String emailCollection = "mail";
 // const String emailTemplate = "admission";
 String emailTemplate = "admission_pdf";
-// String schoolEmail = "admission@stpaulsrourkela.org";
-const String schoolEmail = "andy9c@gmail.com";
+String schoolEmail = "admission@stpaulsrourkela.org";
+// const String schoolEmail = "andy9c@gmail.com";
 
 void configurationUpdate() {
   lastDateOfRegistration = formatDate(

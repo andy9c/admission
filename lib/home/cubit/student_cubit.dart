@@ -43,6 +43,8 @@ class StudentCubit extends Cubit<StudentState> {
               religion: student.religion,
               socialCategory: student.socialCategory,
               aadharNumber: student.aadharNumber,
+              hasAadharCard: student.hasAadharCard,
+              aadharEnrollmentID: student.aadharEnrollmentID,
               lastSchoolAttended: student.lastSchoolAttended,
               lastClassAttended: student.lastClassAttended,
               admissionSoughtForClass: student.admissionSoughtForClass,
@@ -134,6 +136,7 @@ class StudentCubit extends Cubit<StudentState> {
       state.religion.valid,
       state.socialCategory.valid,
       state.aadharNumber.valid,
+      state.aadharEnrollmentID.valid,
       state.lastSchoolAttended.valid,
       state.lastClassAttended.valid,
       state.admissionSoughtForClass.valid,
@@ -166,6 +169,7 @@ class StudentCubit extends Cubit<StudentState> {
       "Religion",
       "Social Category",
       "Aadhar Card Number",
+      "Aadhar Enrollment ID",
       "Last School Attended",
       "Last Class Attended",
       "Admission Sought for Class",
@@ -305,6 +309,24 @@ class StudentCubit extends Cubit<StudentState> {
     final aadharNumber = Aadhar.dirty(value.toUpperCase());
     emit(state.copyWith(
       aadharNumber: aadharNumber,
+    ));
+
+    checkInvalidFields();
+  }
+
+  void hasAadharCardChanged(String value) {
+    final hasAadharCard = value.toUpperCase();
+    emit(state.copyWith(
+      hasAadharCard: hasAadharCard,
+    ));
+
+    checkInvalidFields();
+  }
+
+  void aadharEnrollmentIDChanged(String value) {
+    final aadharEnrollmentID = AadharEnrollment.dirty(value.toUpperCase());
+    emit(state.copyWith(
+      aadharEnrollmentID: aadharEnrollmentID,
     ));
 
     checkInvalidFields();

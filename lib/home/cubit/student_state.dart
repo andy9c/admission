@@ -28,6 +28,8 @@ class StudentState extends Equatable with FormzMixin {
     this.religion = const Compulsory.pure(),
     this.socialCategory = const Compulsory.pure(),
     this.aadharNumber = const Aadhar.pure(),
+    this.hasAadharCard = "YES",
+    this.aadharEnrollmentID = const AadharEnrollment.pure(),
     this.lastSchoolAttended = const Compulsory.pure(),
     this.lastClassAttended = const Compulsory.pure(),
     this.admissionSoughtForClass = const Compulsory.pure(),
@@ -92,6 +94,8 @@ class StudentState extends Equatable with FormzMixin {
   final Compulsory socialCategory;
 
   final Aadhar aadharNumber;
+  final String hasAadharCard;
+  final AadharEnrollment aadharEnrollmentID;
   final Compulsory lastSchoolAttended;
   final Compulsory lastClassAttended;
   final Compulsory admissionSoughtForClass;
@@ -152,6 +156,7 @@ class StudentState extends Equatable with FormzMixin {
         religion,
         socialCategory,
         aadharNumber,
+        aadharEnrollmentID,
         lastSchoolAttended,
         lastClassAttended,
         admissionSoughtForClass,
@@ -194,6 +199,8 @@ class StudentState extends Equatable with FormzMixin {
       religion,
       socialCategory,
       aadharNumber,
+      hasAadharCard,
+      aadharEnrollmentID,
       lastSchoolAttended,
       lastClassAttended,
       admissionSoughtForClass,
@@ -254,6 +261,8 @@ class StudentState extends Equatable with FormzMixin {
     Compulsory? religion,
     Compulsory? socialCategory,
     Aadhar? aadharNumber,
+    String? hasAadharCard,
+    AadharEnrollment? aadharEnrollmentID,
     Compulsory? lastSchoolAttended,
     Compulsory? lastClassAttended,
     Compulsory? admissionSoughtForClass,
@@ -313,6 +322,8 @@ class StudentState extends Equatable with FormzMixin {
       religion: religion ?? this.religion,
       socialCategory: socialCategory ?? this.socialCategory,
       aadharNumber: aadharNumber ?? this.aadharNumber,
+      hasAadharCard: hasAadharCard ?? this.hasAadharCard,
+      aadharEnrollmentID: aadharEnrollmentID ?? this.aadharEnrollmentID,
       lastSchoolAttended: lastSchoolAttended ?? this.lastSchoolAttended,
       lastClassAttended: lastClassAttended ?? this.lastClassAttended,
       admissionSoughtForClass:
@@ -379,6 +390,8 @@ class StudentState extends Equatable with FormzMixin {
       religion: Compulsory.dirty(snap['religion']),
       socialCategory: Compulsory.dirty(snap['socialCategory']),
       aadharNumber: Aadhar.dirty(snap['aadharNumber']),
+      hasAadharCard: snap['hasAadharCard'],
+      aadharEnrollmentID: AadharEnrollment.dirty(snap['aadharEnrollmentID']),
       lastSchoolAttended: Compulsory.dirty(snap['lastSchoolAttended']),
       lastClassAttended: Compulsory.dirty(snap['lastClassAttended']),
       admissionSoughtForClass:

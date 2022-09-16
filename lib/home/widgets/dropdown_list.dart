@@ -106,6 +106,11 @@ List<String> relationshipList = [
   "SISTER",
 ];
 
+List<String> hasAadharCardList = [
+  "YES",
+  "NO",
+];
+
 List<String> classList = [
   "LKG",
   // "UKG",

@@ -577,6 +577,76 @@ class SocialCategorySelection extends StatelessWidget {
   }
 }
 
+class HasAadharCardSelection extends StatelessWidget {
+  const HasAadharCardSelection({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<StudentCubit, StudentState>(
+      buildWhen: (previous, current) =>
+          previous.hasAadharCard != current.hasAadharCard,
+      builder: (context, state) {
+        return Align(
+          alignment: Alignment.center,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
+            child: DropdownButtonFormField<String>(
+              isExpanded: true,
+              value: state.hasAadharCard == "" ? null : state.hasAadharCard,
+              icon: const Icon(Icons.arrow_downward_rounded),
+              iconSize: 24,
+              elevation: 16,
+              style: const TextStyle(color: Colors.deepPurple),
+              decoration: const InputDecoration(
+                prefixIcon: Padding(
+                  padding:
+                      EdgeInsets.only(top: 0), // add padding to adjust icon
+                  child: Icon(Icons.credit_card),
+                ),
+                border: OutlineInputBorder(),
+                labelText: "Does the candidate have an Aadhar Card ?",
+                helperText: '',
+              ),
+              onChanged: state.setEnabled
+                  ? (String? hasAadharCard) {
+                      if (hasAadharCard == "YES") {
+                        context
+                            .read<StudentCubit>()
+                            .aadharEnrollmentIDChanged("");
+                      } else {
+                        context.read<StudentCubit>().aadharCardChanged("");
+                      }
+
+                      context
+                          .read<StudentCubit>()
+                          .hasAadharCardChanged(hasAadharCard!);
+                    }
+                  : null,
+              items: hasAadharCardList
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+              hint: const Text(
+                "Does the candidate have an Aadhar Card ?",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
 class AadharCard extends StatelessWidget {
   const AadharCard({Key? key}) : super(key: key);
 
@@ -584,7 +654,8 @@ class AadharCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<StudentCubit, StudentState>(
       buildWhen: (previous, current) =>
-          previous.aadharNumber != current.aadharNumber,
+          previous.aadharNumber != current.aadharNumber ||
+          previous.hasAadharCard != current.hasAadharCard,
       builder: (context, state) {
         int digitsLeft = 0;
 
@@ -596,6 +667,9 @@ class AadharCard extends StatelessWidget {
                   .replaceAll(RegExp(r'[^0-9]'), '')
                   .length;
         }
+
+        bool shouldEnable = state.hasAadharCard == "YES" ? true : false;
+
         return Align(
           alignment: Alignment.center,
           child: Padding(
@@ -603,40 +677,120 @@ class AadharCard extends StatelessWidget {
               vertical: 0,
               horizontal: 5.w,
             ),
-            child: TextFormField(
-              inputFormatters: [
-                TextInputMask(
-                  mask: ['9999-9999-9999'],
-                  placeholder: '_',
-                  maxPlaceHolders: 14,
+            child: Visibility(
+              visible: shouldEnable,
+              child: TextFormField(
+                inputFormatters: [
+                  TextInputMask(
+                    mask: ['9999-9999-9999'],
+                    placeholder: '_',
+                    maxPlaceHolders: 14,
+                  ),
+                  //FilteringTextInputFormatter.allow(RegExp(r'(\d+)')),
+                  //LengthLimitingTextInputFormatter(14),
+                ],
+                enabled: state.setEnabled,
+                initialValue: state.aadharNumber.value,
+                maxLines: 1,
+                textCapitalization: TextCapitalization.words,
+                textInputAction: TextInputAction.next,
+                key: const Key('studentForm_aadharCard_textField'),
+                onChanged: (aadharCard) =>
+                    context.read<StudentCubit>().aadharCardChanged(aadharCard),
+                obscureText: false,
+                decoration: InputDecoration(
+                  prefixIcon: const Padding(
+                    padding:
+                        EdgeInsets.only(top: 0), // add padding to adjust icon
+                    child: Icon(Icons.card_membership_rounded),
+                  ),
+                  border: const OutlineInputBorder(),
+                  labelText: "Candidate's Aadhar Card Number",
+                  errorText: state.aadharNumber.invalid
+                      ? digitsLeft == 0
+                          ? 'invalid aadhar number'
+                          : digitsLeft == 1
+                              ? '$digitsLeft digit left'
+                              : '$digitsLeft digits left'
+                      : null,
                 ),
-                //FilteringTextInputFormatter.allow(RegExp(r'(\d+)')),
-                //LengthLimitingTextInputFormatter(14),
-              ],
-              enabled: state.setEnabled,
-              initialValue: state.aadharNumber.value,
-              maxLines: 1,
-              textCapitalization: TextCapitalization.words,
-              textInputAction: TextInputAction.next,
-              key: const Key('studentForm_aadharCard_textField'),
-              onChanged: (aadharCard) =>
-                  context.read<StudentCubit>().aadharCardChanged(aadharCard),
-              obscureText: false,
-              decoration: InputDecoration(
-                prefixIcon: const Padding(
-                  padding:
-                      EdgeInsets.only(top: 0), // add padding to adjust icon
-                  child: Icon(Icons.card_membership_rounded),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class AadharEnrollmentID extends StatelessWidget {
+  const AadharEnrollmentID({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<StudentCubit, StudentState>(
+      buildWhen: (previous, current) =>
+          previous.aadharEnrollmentID != current.aadharEnrollmentID ||
+          previous.hasAadharCard != current.hasAadharCard,
+      builder: (context, state) {
+        int digitsLeft = 0;
+
+        if (state.aadharEnrollmentID.value == null) {
+          digitsLeft = 0;
+        } else {
+          digitsLeft = 14 -
+              state.aadharEnrollmentID.value!
+                  .replaceAll(RegExp(r'[^0-9]'), '')
+                  .length;
+        }
+
+        bool shouldEnable = state.hasAadharCard == "YES" ? true : false;
+
+        return Align(
+          alignment: Alignment.center,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 5.w,
+            ),
+            child: Visibility(
+              visible: !shouldEnable,
+              child: TextFormField(
+                inputFormatters: [
+                  TextInputMask(
+                    mask: ['9999/99999/99999'],
+                    placeholder: '_',
+                    maxPlaceHolders: 16,
+                  ),
+                  //FilteringTextInputFormatter.allow(RegExp(r'(\d+)')),
+                  //LengthLimitingTextInputFormatter(14),
+                ],
+                enabled: state.setEnabled,
+                initialValue: state.aadharEnrollmentID.value,
+                maxLines: 1,
+                textCapitalization: TextCapitalization.words,
+                textInputAction: TextInputAction.next,
+                key: const Key('studentForm_aadharEnrollmentID_textField'),
+                onChanged: (aadharEnrollmentID) => context
+                    .read<StudentCubit>()
+                    .aadharEnrollmentIDChanged(aadharEnrollmentID),
+                obscureText: false,
+                decoration: InputDecoration(
+                  prefixIcon: const Padding(
+                    padding:
+                        EdgeInsets.only(top: 0), // add padding to adjust icon
+                    child: Icon(Icons.card_membership_rounded),
+                  ),
+                  border: const OutlineInputBorder(),
+                  labelText: "Candidate's Aadhar Enrollment ID",
+                  errorText: state.aadharEnrollmentID.invalid
+                      ? digitsLeft == 0
+                          ? 'invalid aadhar enrollment id'
+                          : digitsLeft == 1
+                              ? '$digitsLeft digit left'
+                              : '$digitsLeft digits left'
+                      : null,
                 ),
-                border: const OutlineInputBorder(),
-                labelText: "Candidate's Aadhar Card Number",
-                errorText: state.aadharNumber.invalid
-                    ? digitsLeft == 0
-                        ? 'invalid aadhar number'
-                        : digitsLeft == 1
-                            ? '$digitsLeft digit left'
-                            : '$digitsLeft digits left'
-                    : null,
               ),
             ),
           ),
