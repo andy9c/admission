@@ -18,7 +18,7 @@ class Email extends FormzInput<String, EmailValidationError> {
 
   //r'^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$',
   static final RegExp _emailRegExp = RegExp(
-    r'^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@admission.org$',
+    r'^[a-zA-Z0-9]+@admission.org$',
   );
 
   @override

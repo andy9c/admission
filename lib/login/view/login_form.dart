@@ -86,7 +86,7 @@ class LoginForm extends StatelessWidget {
                     _EmailInput(),
                     const SizedBox(height: 8),
                     _PasswordInput(),
-                    const SizedBox(height: 32),
+                    const SizedBox(height: 8),
                     SizedBox(
                       width: 320,
                       child: _LoginButton(),
@@ -120,31 +120,7 @@ class LoginForm extends StatelessWidget {
                         fontStyle: FontStyle.italic,
                       ),
                     ),
-                    Text(
-                      configNoticeLine2,
-                      textAlign: TextAlign.center,
-                      softWrap: true,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-            Align(
-              alignment: Alignment.center,
-              child: Container(
-                width: 340,
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  // border: Border.all(
-                  //   color: Colors.grey,
-                  // ),
-                  color: Colors.white54,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Column(
-                  children: const [
-                    Text(
+                    const Text(
                       "Trouble Logging in ?",
                       textAlign: TextAlign.center,
                       softWrap: true,
@@ -154,7 +130,7 @@ class LoginForm extends StatelessWidget {
                         fontStyle: FontStyle.italic,
                       ),
                     ),
-                    Text(
+                    const Text(
                       "Please Contact +91 8895219339",
                       textAlign: TextAlign.center,
                       softWrap: true,

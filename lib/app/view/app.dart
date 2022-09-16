@@ -50,6 +50,7 @@ class AppView extends StatelessWidget {
             const ResponsiveBreakpoint.resize(1000, name: DESKTOP),
             const ResponsiveBreakpoint.autoScale(2460, name: '4K'),
           ],
+          backgroundColor: const Color(0xFFE0F2F1),
         ),
         theme: theme,
         home: FlowBuilder<AppStatus>(
