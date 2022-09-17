@@ -26,7 +26,7 @@ class Aadhar extends FormzInput<String?, AadharValidationError> {
 
   @override
   AadharValidationError? validator(String? value) {
-    if (value == null || value.isEmpty) return null;
+    if (value == null || value.isEmpty) value = "";
 
     value = value.replaceAll(new RegExp(r'[^0-9]'), '');
     bool isValid = check.verhoeff.validate(value);
