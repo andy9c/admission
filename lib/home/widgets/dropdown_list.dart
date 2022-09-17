@@ -7,6 +7,8 @@ const List<String> fieldDescription = [
   "Blood Group",
   "Religion",
   "Social Category",
+  "Aadhar Card Number",
+  "Aadhar Enrollment ID",
   "Last School Attended",
   "Last Class Attended",
   "Admission Sought for Class",

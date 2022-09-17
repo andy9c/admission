@@ -92,6 +92,8 @@ class StudentCubit extends Cubit<StudentState> {
             ),
           );
         } else {
+          checkInvalidFields();
+
           emit(
             state.copyWith(
               loadStatus: LoadStatus.NewStudent,
@@ -159,44 +161,19 @@ class StudentCubit extends Cubit<StudentState> {
       state.iAgreeCheckBox.valid,
     ];
 
-    List<String> fieldDescription = [
-      "Candidate's First Name",
-      "Date of Birth",
-      "Place of Birth",
-      "Gender",
-      "Mother Tongue",
-      "Blood Group",
-      "Religion",
-      "Social Category",
-      "Aadhar Card Number",
-      "Aadhar Enrollment ID",
-      "Last School Attended",
-      "Last Class Attended",
-      "Admission Sought for Class",
-      "Father's First Name",
-      "Father's Profession",
-      "Father's Qualification",
-      "Father's Home/Personal Contact",
-      "Father's Email ID",
-      "Mother's First Name",
-      "Mother's Profession",
-      "Mother's Qualification",
-      "Mother's Home/Personal Contact",
-      "Mother's Email ID",
-      "Present Location",
-      "Present State",
-      "Present PIN Code",
-      "Permanent Location",
-      "Permanent State",
-      "Permanent PIN Code",
-      "I AGREE Checkbox",
-    ];
+    // check fieldDescription variable in dropdown_list
 
     Map<int, bool> fieldValidityMap = fieldValidity.asMap();
     List<String> invalidFields = [];
 
     fieldValidityMap.forEach((key, value) {
-      if (value == false) invalidFields.add(fieldDescription[key]);
+      if (value == false) {
+        if (state.hasAadharCard == "YES" && key == 9) {
+        } else if (state.hasAadharCard == "NO" && key == 8) {
+        } else {
+          invalidFields.add(fieldDescription[key]);
+        }
+      }
     });
 
     emit(state.copyWith(

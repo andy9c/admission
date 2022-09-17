@@ -33,8 +33,6 @@ class Aadhar extends FormzInput<String?, AadharValidationError> {
 
     return (value.trim().length == 12 && isValid)
         ? null
-        : value.trim().length == 0
-            ? null
-            : AadharValidationError.invalid;
+        : AadharValidationError.invalid;
   }
 }

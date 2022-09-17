@@ -273,19 +273,6 @@ class SubmitAndLockButton extends StatelessWidget {
         String invalidFields = state.invalidFields.toString();
 
         bool isValid = state.status.isValidated;
-        bool trulyValid = false;
-
-        if (state.hasAadharCard == "YES" &&
-            isValid &&
-            state.aadharNumber.valid) {
-          trulyValid = true;
-        } else if (state.hasAadharCard == "NO" &&
-            isValid &&
-            state.aadharEnrollmentID.valid) {
-          trulyValid = true;
-        } else {
-          trulyValid = false;
-        }
 
         return state.status == FormzStatus.submissionInProgress
             ? const SizedBox(
@@ -303,7 +290,7 @@ class SubmitAndLockButton extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       state.setEnabled
-                          ? trulyValid
+                          ? isValid
                               ? Container()
                               : Text(
                                   "Please check the following required fields (with blue highlighted icons) before submitting\n\n$invalidFields",
@@ -354,7 +341,7 @@ class SubmitAndLockButton extends StatelessWidget {
                                 ),
                                 backgroundColor: Colors.blueAccent,
                               ),
-                              onPressed: trulyValid
+                              onPressed: isValid
                                   ? () => context
                                       .read<StudentCubit>()
                                       .submitAndLockPressed()

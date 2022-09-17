@@ -26,14 +26,12 @@ class AadharEnrollment
 
   @override
   AadharEnrollmentValidationError? validator(String? value) {
-    if (value == null || value.isEmpty) return null;
+    if (value == null || value.isEmpty) value = "";
 
     value = value.replaceAll(new RegExp(r'[^0-9]'), '');
 
     return (value.trim().length == 14)
         ? null
-        : value.trim().length == 0
-            ? null
-            : AadharEnrollmentValidationError.invalid;
+        : AadharEnrollmentValidationError.invalid;
   }
 }
