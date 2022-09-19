@@ -306,7 +306,7 @@ class _HomePageState extends State<HomePage> {
               setEnabled ? spacerWidget() : Container(),
               setEnabled
                   ? sectionInfo(
-                      "Please Carefully review this admission application form before submitting. Once submitted, it will be permanently locked. No further changes can be made at any point of time, in the admission process.")
+                      "Please carefully review this admission application form before submitting. Once submitted, it will be permanently locked. No further changes can be made at any point of time, in the admission process.")
                   : Container(),
               setEnabled ? spacerWidget() : Container(),
               const SubmitAndLockButton(),

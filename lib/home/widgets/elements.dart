@@ -400,8 +400,8 @@ Future<dynamic> showPDF(BuildContext context, StudentState state) {
                     ),
                     backgroundColor: Colors.deepOrangeAccent,
                   ),
-                  onPressed: () =>
-                      context.read<StudentCubit>().submitAndLockPressed(),
+                  onPressed: () => confirmDialog(
+                      context, "Confirm", "Are you sure to submit & lock ?"),
                   child: const Text('SUBMIT & LOCK'),
                 )
               : Container(),
@@ -559,6 +559,72 @@ Future<dynamic> notifyDialog(
             ),
             onPressed: () => Navigator.of(context).pop(),
             child: const Text('OK'),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+Future<dynamic> confirmDialog(
+    BuildContext parentContext, String title, String message) async {
+  return showDialog(
+    context: parentContext,
+    builder: (context) {
+      return AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        elevation: 16,
+        title: Text(
+          title,
+          softWrap: true,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: SizedBox(
+          width: 340,
+          child: Text(
+            message,
+            softWrap: true,
+            style: const TextStyle(
+              fontSize: 12,
+            ),
+          ),
+        ),
+        actions: [
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 50,
+                vertical: 20,
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              backgroundColor: Colors.deepOrangeAccent,
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+              Navigator.of(parentContext).pop();
+              context.read<StudentCubit>().submitAndLockPressed();
+            },
+            child: const Text('SUBMIT & LOCK'),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 50,
+                vertical: 20,
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              backgroundColor: Colors.blueAccent,
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('CANCEL'),
           ),
         ],
       );
