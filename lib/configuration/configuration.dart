@@ -4,18 +4,25 @@ import 'package:date_format/date_format.dart';
 
 String academicYear = "2023-2024";
 
-int expYear = 2022;
-int expMonth = 10;
-// if last date of application is 26 then expDay = last day + 1
-// therefore expDay = 26 + 1 = 27
-int expDay = 21;
+int startDateRegYear = 2022;
+int startDateRegMonth = 9;
+int startDateRegDay = 30;
 
-int startYear = 2022;
-int startMonth = 9;
-int startDay = 30;
+int lastDateRegYear = 2022;
+int lastDateRegMonth = 10;
+int lastDateRegDay = 20;
+
+int startDateSubYear = 2022;
+int startDateSubMonth = 10;
+int startDateSubDay = 11;
+
+int lastDateSubYear = 2022;
+int lastDateSubMonth = 10;
+int lastDateSubDay = 22;
 
 String startDateOfRegistration = "";
 String lastDateOfRegistration = "";
+
 String startDateOfSubmission = "";
 String lastDateOfSubmission = "";
 
@@ -41,19 +48,23 @@ String schoolEmail = "admission@stpaulsrourkela.org";
 // const String schoolEmail = "andy9c@gmail.com";
 
 void configurationUpdate() {
-  lastDateOfRegistration = formatDate(
-          DateTime(expYear, expMonth, expDay - 1), [d, '-', M, '-', yyyy])
-      .toUpperCase();
-
   startDateOfRegistration = formatDate(
-          DateTime(startYear, startMonth, startDay), [d, '-', M, '-', yyyy])
-      .toUpperCase();
+      DateTime(startDateRegYear, startDateRegMonth, startDateRegDay),
+      [d, '-', M, '-', yyyy]).toUpperCase();
 
-  lastDateOfSubmission =
-      formatDate(DateTime(expYear, expMonth, expDay), [d, '-', M, '-', yyyy])
-          .toUpperCase();
+  lastDateOfRegistration = formatDate(
+      DateTime(lastDateRegYear, lastDateRegMonth, lastDateRegDay),
+      [d, '-', M, '-', yyyy]).toUpperCase();
 
-  calendarLastYear = expYear + 1;
+  startDateOfSubmission = formatDate(
+      DateTime(startDateSubYear, startDateSubMonth, startDateSubDay),
+      [d, '-', M, '-', yyyy]).toUpperCase();
+
+  lastDateOfSubmission = formatDate(
+      DateTime(lastDateSubYear, lastDateSubMonth, lastDateSubDay),
+      [d, '-', M, '-', yyyy]).toUpperCase();
+
+  calendarLastYear = lastDateRegYear + 1;
 
   configNoticeLine1 = "Last Date Of Registration : $lastDateOfRegistration";
   configAppBarName = "St Paul's School Admission $academicYear";

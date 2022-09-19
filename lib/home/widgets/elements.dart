@@ -79,25 +79,21 @@ class Expired {
     var thisInstant = DateTime.now().toLocal();
 
     var expiryTime = DateTime.utc(
-      expYear,
-      expMonth,
-      expDay - 1,
-      18,
-      30,
+      lastDateRegYear,
+      lastDateRegMonth,
+      lastDateRegDay,
     );
 
-    return (thisInstant.compareTo(expiryTime.toLocal()) >= 0) ? true : false;
+    return (thisInstant.compareTo(expiryTime.toLocal()) > 0) ? true : false;
   }
 
   static bool hasStarted() {
     var thisInstant = DateTime.now().toLocal();
 
     var startTime = DateTime.utc(
-      startYear,
-      startMonth,
-      startDay,
-      18,
-      30,
+      startDateRegYear,
+      startDateRegMonth,
+      startDateRegDay,
     );
 
     return (thisInstant.compareTo(startTime.toLocal()) >= 0) ? true : false;
@@ -522,7 +518,8 @@ Widget instructionButton(BuildContext context) {
   );
 }
 
-Future<dynamic> notifyDialog(BuildContext context, String text) async {
+Future<dynamic> notifyDialog(
+    BuildContext context, String title, String message) async {
   return showDialog(
     context: context,
     builder: (context) {
@@ -531,10 +528,22 @@ Future<dynamic> notifyDialog(BuildContext context, String text) async {
           borderRadius: BorderRadius.circular(12),
         ),
         elevation: 16,
-        title: Text(configSchoolName),
+        title: Text(
+          title,
+          softWrap: true,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         content: SizedBox(
-          width: 150,
-          child: Text(text),
+          width: 340,
+          child: Text(
+            message,
+            softWrap: true,
+            style: const TextStyle(
+              fontSize: 14,
+            ),
+          ),
         ),
         actions: [
           ElevatedButton(

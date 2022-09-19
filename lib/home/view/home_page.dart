@@ -340,17 +340,25 @@ class _HomePageState extends State<HomePage> {
         child: BlocConsumer<StudentCubit, StudentState>(
           listener: (context, state) {},
           builder: (context, state) {
+            final RegExp emailRegExp = RegExp(
+              r'^test+[0-9]+@admission.org$',
+            );
+
             return (state.loadStatus == LoadStatus.Loading)
                 ? const LoadingState()
                 : (state.loadStatus == LoadStatus.ExistingStudent)
                     ? loadStudent(false) //printPDF()
                     : (state.loadStatus == LoadStatus.NewStudent &&
-                            Expired.hasStarted() == true &&
-                            Expired.hasExpired() == false)
+                            Expired.hasStarted() &&
+                            !Expired.hasExpired())
                         ? loadStudent(true)
-                        : (Expired.hasExpired() == true)
-                            ? notifyPage("Registration Over")
-                            : notifyPage("Something went Wrong !");
+                        : (!Expired.hasStarted() &&
+                                !Expired.hasExpired() &&
+                                emailRegExp.hasMatch(user.email ?? ''))
+                            ? loadStudent(true)
+                            : (Expired.hasExpired())
+                                ? notifyPage("Registration Over")
+                                : notifyPage("Something went Wrong !");
           },
         ),
       ),

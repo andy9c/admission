@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:admission/configuration/configuration.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,8 +10,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 
-class LoginForm extends StatelessWidget {
-  const LoginForm({Key? key}) : super(key: key);
+class LoginForm extends StatefulWidget {
+  const LoginForm({super.key});
+
+  @override
+  State<LoginForm> createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
+  Timer? timer;
+
+  @override
+  void initState() {
+    super.initState();
+    timer = Timer.periodic(
+      const Duration(seconds: 1),
+      (Timer t) => context.read<LoginCubit>().timerChanged(),
+    );
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,130 +47,141 @@ class LoginForm extends StatelessWidget {
             );
         }
       },
-      child: Align(
-        alignment: const Alignment(0, -1 / 3),
-        child: ListView(
-          padding: const EdgeInsets.all(0.0),
-          shrinkWrap: false,
-          children: <Widget>[
-            const SizedBox(height: 20),
-            Align(
-              alignment: Alignment.center,
-              child: Image.asset(
-                assetSchoolLogo,
-                height: 180,
-              ),
+      child: BlocBuilder<LoginCubit, LoginState>(
+        builder: (context, state) {
+          return Align(
+            alignment: const Alignment(0, -1 / 3),
+            child: ListView(
+              padding: const EdgeInsets.all(0.0),
+              shrinkWrap: false,
+              children: <Widget>[
+                const SizedBox(height: 20),
+                Align(
+                  alignment: Alignment.center,
+                  child: Image.asset(
+                    assetSchoolLogo,
+                    height: 180,
+                  ),
+                ),
+                const SizedBox(height: 32),
+                // Text(
+                //   configSchoolName,
+                //   textAlign: TextAlign.center,
+                //   style: GoogleFonts.passionOne(
+                //     fontSize: 24,
+                //     color: Colors.black87,
+                //   ),
+                // ),
+                // const SizedBox(height: 16),
+                Align(
+                  alignment: Alignment.center,
+                  child: Container(
+                    width: 340,
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 40,
+                      horizontal: 40,
+                    ),
+                    decoration: BoxDecoration(
+                      // border: Border.all(
+                      //   color: Colors.grey,
+                      // ),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black12,
+                          offset: Offset(
+                            0.0,
+                            0.0,
+                          ),
+                          blurRadius: 5.0,
+                          spreadRadius: 0.5,
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        Text(
+                          configSchoolName,
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.passionOne(
+                            fontSize: 24,
+                            color: Colors.black87,
+                          ),
+                        ),
+                        const SizedBox(height: 32),
+                        _EmailInput(),
+                        const SizedBox(height: 8),
+                        _PasswordInput(),
+                        const SizedBox(height: 8),
+                        SizedBox(
+                          width: 320,
+                          child: _LoginButton(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Align(
+                  alignment: Alignment.center,
+                  child: Container(
+                    width: 340,
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      // border: Border.all(
+                      //   color: Colors.grey,
+                      // ),
+                      color: Colors.white54,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Column(
+                      children: [
+                        Text(
+                          !Expired.hasStarted() && !Expired.hasExpired()
+                              ? state.openTimer
+                              : Expired.hasStarted() && !Expired.hasExpired()
+                                  ? state.closeTimer
+                                  : configNoticeLine1,
+                          textAlign: TextAlign.center,
+                          softWrap: true,
+                          style: TextStyle(
+                            color:
+                                !Expired.hasStarted() && !Expired.hasExpired()
+                                    ? Colors.green
+                                    : Colors.redAccent,
+                            fontWeight: FontWeight.bold,
+                            fontStyle: FontStyle.italic,
+                          ),
+                        ),
+                        const Text(
+                          "Trouble Logging in ?",
+                          textAlign: TextAlign.center,
+                          softWrap: true,
+                          style: TextStyle(
+                            color: Colors.blueGrey,
+                            fontWeight: FontWeight.bold,
+                            fontStyle: FontStyle.italic,
+                          ),
+                        ),
+                        const Text(
+                          "Please Contact +91 8895219339",
+                          textAlign: TextAlign.center,
+                          softWrap: true,
+                          style: TextStyle(
+                            color: Colors.blueAccent,
+                            fontWeight: FontWeight.bold,
+                            fontStyle: FontStyle.italic,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 32),
-            // Text(
-            //   configSchoolName,
-            //   textAlign: TextAlign.center,
-            //   style: GoogleFonts.passionOne(
-            //     fontSize: 24,
-            //     color: Colors.black87,
-            //   ),
-            // ),
-            // const SizedBox(height: 16),
-            Align(
-              alignment: Alignment.center,
-              child: Container(
-                width: 340,
-                padding: const EdgeInsets.symmetric(
-                  vertical: 40,
-                  horizontal: 40,
-                ),
-                decoration: BoxDecoration(
-                  // border: Border.all(
-                  //   color: Colors.grey,
-                  // ),
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.black12,
-                      offset: Offset(
-                        0.0,
-                        0.0,
-                      ),
-                      blurRadius: 5.0,
-                      spreadRadius: 0.5,
-                    ),
-                  ],
-                ),
-                child: Column(
-                  children: [
-                    Text(
-                      configSchoolName,
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.passionOne(
-                        fontSize: 24,
-                        color: Colors.black87,
-                      ),
-                    ),
-                    const SizedBox(height: 32),
-                    _EmailInput(),
-                    const SizedBox(height: 8),
-                    _PasswordInput(),
-                    const SizedBox(height: 8),
-                    SizedBox(
-                      width: 320,
-                      child: _LoginButton(),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-            Align(
-              alignment: Alignment.center,
-              child: Container(
-                width: 340,
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  // border: Border.all(
-                  //   color: Colors.grey,
-                  // ),
-                  color: Colors.white54,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Column(
-                  children: [
-                    Text(
-                      configNoticeLine1,
-                      textAlign: TextAlign.center,
-                      softWrap: true,
-                      style: const TextStyle(
-                        color: Colors.redAccent,
-                        fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                    const Text(
-                      "Trouble Logging in ?",
-                      textAlign: TextAlign.center,
-                      softWrap: true,
-                      style: TextStyle(
-                        color: Colors.blueGrey,
-                        fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                    const Text(
-                      "Please Contact +91 8895219339",
-                      textAlign: TextAlign.center,
-                      softWrap: true,
-                      style: TextStyle(
-                        color: Colors.blueAccent,
-                        fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
@@ -241,11 +276,13 @@ class _LoginButton extends StatelessWidget {
                 ),
                 onPressed: state.status.isValidated
                     ? () {
-                        if (!Expired.hasStarted()) {
-                          notifyDialog(context,
-                              "Form will open from $startDateOfRegistration");
-                        } else if (Expired.hasExpired()) {
-                          notifyDialog(context, "Form submission is closed !");
+                        final RegExp emailRegExp = RegExp(
+                          r'^test+[0-9]+@admission.org$',
+                        );
+                        if (!Expired.hasStarted() &&
+                            !emailRegExp.hasMatch(state.email.value)) {
+                          notifyDialog(context, "Notice",
+                              "Portal will be open from $startDateOfRegistration to $lastDateOfRegistration");
                         } else {
                           context.read<LoginCubit>().logInWithCredentials();
                         }

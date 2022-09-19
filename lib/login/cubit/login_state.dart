@@ -5,11 +5,15 @@ class LoginState extends Equatable {
     this.email = const Email.pure(),
     this.password = const Password.pure(),
     this.status = FormzStatus.pure,
+    this.openTimer = "",
+    this.closeTimer = "",
   });
 
   final Email email;
   final Password password;
   final FormzStatus status;
+  final String openTimer;
+  final String closeTimer;
 
   @override
   List<Object> get props {
@@ -17,6 +21,8 @@ class LoginState extends Equatable {
       email,
       password,
       status,
+      openTimer,
+      closeTimer,
     ];
   }
 
@@ -24,11 +30,15 @@ class LoginState extends Equatable {
     Email? email,
     Password? password,
     FormzStatus? status,
+    String? openTimer,
+    String? closeTimer,
   }) {
     return LoginState(
       email: email ?? this.email,
       password: password ?? this.password,
       status: status ?? this.status,
+      openTimer: openTimer ?? this.openTimer,
+      closeTimer: closeTimer ?? this.closeTimer,
     );
   }
 }
