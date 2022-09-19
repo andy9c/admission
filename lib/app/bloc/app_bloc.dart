@@ -43,9 +43,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   AppState _mapUserChangedToState(AppUserChanged event, AppState state) {
     return event.user.isNotEmpty
-        ? event.user.email == "andy9c@gmail.com"
-            ? const AppState.administrator()
-            : AppState.authenticated(event.user)
+        ? AppState.authenticated(event.user)
         : const AppState.unauthenticated();
   }
 

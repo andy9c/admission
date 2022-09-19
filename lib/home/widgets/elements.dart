@@ -370,9 +370,9 @@ class SubmitAndLockButton extends StatelessWidget {
   }
 }
 
-Future<dynamic> showPDF(BuildContext context, StudentState state) {
+Future<dynamic> showPDF(BuildContext parentContext, StudentState state) {
   return showDialog(
-    context: context,
+    context: parentContext,
     builder: (context) {
       return AlertDialog(
         shape: RoundedRectangleBorder(
@@ -400,8 +400,8 @@ Future<dynamic> showPDF(BuildContext context, StudentState state) {
                     ),
                     backgroundColor: Colors.deepOrangeAccent,
                   ),
-                  onPressed: () => confirmDialog(
-                      context, "Confirm", "Are you sure to submit & lock ?"),
+                  onPressed: () => confirmDialog(parentContext, "Confirm",
+                      "Are you sure to submit & lock ?"),
                   child: const Text('SUBMIT & LOCK'),
                 )
               : Container(),

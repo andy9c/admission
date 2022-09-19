@@ -30,7 +30,7 @@ dependencies {
   // ...
 
   // Import the Firebase BoM
-  implementation platform('com.google.firebase:firebase-bom:30.3.1')
+  implementation platform('com.google.firebase:firebase-bom:30.4.1')
 
   // When using the BoM, you don't specify versions in Firebase library dependencies
 
@@ -41,8 +41,7 @@ dependencies {
   // For example, declare the dependencies for Firebase Authentication and Cloud Firestore
   implementation 'com.google.firebase:firebase-auth'
   implementation 'com.google.firebase:firebase-firestore'
-  implementation 'com.google.firebase:firebase-appcheck-debug:16.0.0'
-  androidTestImplementation 'com.google.firebase:firebase-appcheck-debug-testing:16.0.0'
+  implementation 'com.google.firebase:firebase-appcheck-safetynet:16.0.2'
   implementation 'com.google.firebase:firebase-appcheck-playintegrity'
 }
 

@@ -65,7 +65,7 @@ Future<void> main() async {
       webRecaptchaSiteKey: '6LfUzJgcAAAAABYmoyiNUOqaOcvMj8CXDyHTDr4p',
     );
   } else {
-    // NOT running on the web! You can check for additional platforms here.
+    await FirebaseAppCheck.instance.activate();
   }
 
   Bloc.observer = AppBlocObserver();

@@ -17,9 +17,6 @@ class LogInWithGoogleFailure implements Exception {}
 /// Thrown during the logout process if a failure occurs.
 class LogOutFailure implements Exception {}
 
-/// Thrown during the user deletion process if a failure occurs.
-class DeleteUserFailure implements Exception {}
-
 class AuthenticationRepository {
   AuthenticationRepository({
     firebase_auth.FirebaseAuth? firebaseAuth,
@@ -106,29 +103,6 @@ class AuthenticationRepository {
       );
     } on Exception {
       throw LogInWithEmailAndPasswordFailure();
-    }
-  }
-
-  /// Signs in with the provided [email] and [password].
-  /// deletes & signs out current user
-  /// Throws a [DeleteUserFailure] if an exception occurs.
-  Future<void> deleteUser({
-    required String email,
-    required String password,
-  }) async {
-    try {
-      await _firebaseAuth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-    } on Exception {
-      throw LogInWithEmailAndPasswordFailure();
-    }
-
-    try {
-      await _firebaseAuth.currentUser?.delete();
-    } on Exception {
-      throw DeleteUserFailure();
     }
   }
 
