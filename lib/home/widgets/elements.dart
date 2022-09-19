@@ -606,9 +606,10 @@ Future<dynamic> confirmDialog(
               backgroundColor: Colors.deepOrangeAccent,
             ),
             onPressed: () {
-              Navigator.of(context).pop();
-              Navigator.of(parentContext).pop();
-              context.read<StudentCubit>().submitAndLockPressed();
+              Navigator.of(context)
+                ..pop()
+                ..pop();
+              parentContext.read<StudentCubit>().submitAndLockPressed();
             },
             child: const Text('SUBMIT & LOCK'),
           ),
