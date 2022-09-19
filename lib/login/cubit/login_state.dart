@@ -5,8 +5,8 @@ class LoginState extends Equatable {
     this.email = const Email.pure(),
     this.password = const Password.pure(),
     this.status = FormzStatus.pure,
-    this.openTimer = "",
-    this.closeTimer = "",
+    this.openTimer = "Loading ...",
+    this.closeTimer = "Loading ...",
   });
 
   final Email email;
