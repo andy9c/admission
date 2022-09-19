@@ -541,7 +541,7 @@ Future<dynamic> notifyDialog(
             message,
             softWrap: true,
             style: const TextStyle(
-              fontSize: 14,
+              fontSize: 12,
             ),
           ),
         ),
