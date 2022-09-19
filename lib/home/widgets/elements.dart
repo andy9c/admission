@@ -1,5 +1,3 @@
-// ignore_for_file: camel_case_types, avoid_types_as_parameter_names
-
 import 'package:admission/configuration/configuration.dart';
 import 'package:admission/home/view/create_pdf.dart';
 import 'package:pdf/pdf.dart';
@@ -90,6 +88,24 @@ class Expired {
 
     return (thisInstant.compareTo(expiryTime.toLocal()) >= 0) ? true : false;
   }
+
+  static bool hasStarted() {
+    var thisInstant = DateTime.now().toLocal();
+
+    var startTime = DateTime.utc(
+      startYear,
+      startMonth,
+      startDay,
+      18,
+      30,
+    );
+
+    return (thisInstant.compareTo(startTime.toLocal()) >= 0) ? true : false;
+  }
+
+  static bool isAllowed() {
+    return hasStarted() && !hasExpired();
+  }
 }
 
 class IAgreeCheckBox extends StatelessWidget {
@@ -148,8 +164,8 @@ class IAgreeCheckBox extends StatelessWidget {
   }
 }
 
-class sameAsPresentCheckBox extends StatelessWidget {
-  const sameAsPresentCheckBox({Key? key}) : super(key: key);
+class SameAsPresentCheckBox extends StatelessWidget {
+  const SameAsPresentCheckBox({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -272,7 +288,10 @@ class SubmitAndLockButton extends StatelessWidget {
       builder: (context, state) {
         String invalidFields = state.invalidFields.toString();
 
-        bool isValid = state.status.isValidated;
+        bool isValid = state.status.isValidated &&
+            ((state.hasAadharCard == "YES" && state.aadharNumber.valid) ||
+                (state.hasAadharCard == "NO" &&
+                    state.aadharEnrollmentID.valid));
 
         return state.status == FormzStatus.submissionInProgress
             ? const SizedBox(
@@ -330,7 +349,7 @@ class SubmitAndLockButton extends StatelessWidget {
                           ? printButton(context, state)
                           : ElevatedButton(
                               key: const Key(
-                                  'studentForm_submitAndLock_elevatedButton'),
+                                  'studentForm_reviewAdmission_elevatedButton'),
                               style: ElevatedButton.styleFrom(
                                 padding: const EdgeInsets.symmetric(
                                   horizontal: 50,
@@ -342,11 +361,9 @@ class SubmitAndLockButton extends StatelessWidget {
                                 backgroundColor: Colors.blueAccent,
                               ),
                               onPressed: isValid
-                                  ? () => context
-                                      .read<StudentCubit>()
-                                      .submitAndLockPressed()
+                                  ? () => showPDF(context, state)
                                   : null,
-                              child: const Text('Submit & Lock'),
+                              child: const Text('Review Admission Form'),
                             ),
                     ],
                   ),
@@ -375,6 +392,23 @@ Future<dynamic> showPDF(BuildContext context, StudentState state) {
           ),
         ),
         actions: [
+          state.loadStatus == LoadStatus.NewStudent
+              ? ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 50,
+                      vertical: 20,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    backgroundColor: Colors.deepOrangeAccent,
+                  ),
+                  onPressed: () =>
+                      context.read<StudentCubit>().submitAndLockPressed(),
+                  child: const Text('SUBMIT & LOCK'),
+                )
+              : Container(),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.symmetric(
@@ -387,7 +421,9 @@ Future<dynamic> showPDF(BuildContext context, StudentState state) {
               backgroundColor: Colors.blueAccent,
             ),
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('DONE'),
+            child: state.loadStatus == LoadStatus.NewStudent
+                ? const Text('GO BACK')
+                : const Text('DONE'),
           ),
         ],
       );
@@ -483,6 +519,41 @@ Widget instructionButton(BuildContext context) {
         ],
       ),
     ),
+  );
+}
+
+Future<dynamic> notifyDialog(BuildContext context, String text) async {
+  return showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        elevation: 16,
+        title: Text(configSchoolName),
+        content: SizedBox(
+          width: 150,
+          child: Text(text),
+        ),
+        actions: [
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 50,
+                vertical: 20,
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              backgroundColor: Colors.blueAccent,
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('OK'),
+          ),
+        ],
+      );
+    },
   );
 }
 

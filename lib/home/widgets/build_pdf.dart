@@ -31,6 +31,8 @@ pw.Widget buildCustomHeadline(StudentState state) => pw.Header(
     );
 
 Future<Uint8List> generatePdf(PdfPageFormat format, StudentState state) async {
+  bool isExistingStudent = state.loadStatus == LoadStatus.ExistingStudent;
+
   final pdf = pw.Document(
     version: PdfVersion.pdf_1_5,
     compress: true,
@@ -48,12 +50,21 @@ Future<Uint8List> generatePdf(PdfPageFormat format, StudentState state) async {
           children: [
             pw.Flexible(
               flex: 4,
-              child: pw.Image(
-                pw.MemoryImage(
-                  byteList,
-                ),
-                fit: pw.BoxFit.scaleDown,
-              ),
+              child: isExistingStudent
+                  ? pw.Image(
+                      pw.MemoryImage(
+                        byteList,
+                      ),
+                      fit: pw.BoxFit.scaleDown,
+                    )
+                  : pw.Text(
+                      "REVIEW APPLICATION FORM $academicYear (${state.admissionSoughtForClass.value})",
+                      style: pw.TextStyle(
+                        fontSize: 24,
+                        fontStyle: pw.FontStyle.italic,
+                        fontWeight: pw.FontWeight.bold,
+                      ),
+                    ),
             ),
             pw.Flexible(
               flex: 1,

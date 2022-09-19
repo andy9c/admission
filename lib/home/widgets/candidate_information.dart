@@ -604,7 +604,7 @@ class HasAadharCardSelection extends StatelessWidget {
                 prefixIcon: Padding(
                   padding:
                       EdgeInsets.only(top: 0), // add padding to adjust icon
-                  child: Icon(Icons.credit_card),
+                  child: Icon(Icons.credit_card, color: Colors.lightBlue),
                 ),
                 border: OutlineInputBorder(),
                 labelText: "Does the candidate have an Aadhar Card ?",
@@ -706,7 +706,8 @@ class AadharCard extends StatelessWidget {
                       prefixIcon: const Padding(
                         padding: EdgeInsets.only(
                             top: 0), // add padding to adjust icon
-                        child: Icon(Icons.card_membership_rounded),
+                        child: Icon(Icons.card_membership_rounded,
+                            color: Colors.lightBlue),
                       ),
                       border: const OutlineInputBorder(),
                       labelText: "Candidate's Aadhar Card Number",
@@ -788,7 +789,8 @@ class AadharEnrollmentID extends StatelessWidget {
                       prefixIcon: const Padding(
                         padding: EdgeInsets.only(
                             top: 0), // add padding to adjust icon
-                        child: Icon(Icons.card_membership_rounded),
+                        child: Icon(Icons.card_membership_rounded,
+                            color: Colors.lightBlue),
                       ),
                       border: const OutlineInputBorder(),
                       labelText: "Candidate's Aadhar Enrollment ID",
@@ -880,7 +882,7 @@ class LastClassAttended extends StatelessWidget {
             ),
             child: TextFormField(
               inputFormatters: [
-                UpperCaseTextFormatter(),
+                UpperCaseAndDigitsTextFormatter(),
               ],
               enabled: state.setEnabled,
               initialValue: state.lastClassAttended.value,

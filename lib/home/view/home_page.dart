@@ -267,7 +267,7 @@ class _HomePageState extends State<HomePage> {
               sectionHeading("Permanent Address (Domicile)"),
               dividerWidget(),
               spacerWidget(),
-              const sameAsPresentCheckBox(),
+              const SameAsPresentCheckBox(),
               spacerWidget(),
               const PermanentLocation(),
               spacerWidget(),
@@ -299,12 +299,14 @@ class _HomePageState extends State<HomePage> {
               const IAgreeCheckBox(),
               spacerWidget(),
               spacerWidget(),
-              setEnabled ? sectionHeading("Submit & Lock") : Container(),
+              setEnabled
+                  ? sectionHeading("Review Admission Form")
+                  : Container(),
               setEnabled ? dividerWidget() : Container(),
               setEnabled ? spacerWidget() : Container(),
               setEnabled
                   ? sectionInfo(
-                      "This admission application form once submitted will be permanently locked. No further changes can be made at any point of time, in the admission process.")
+                      "Please Carefully review this admission application form before submitting. Once submitted, it will be permanently locked. No further changes can be made at any point of time, in the admission process.")
                   : Container(),
               setEnabled ? spacerWidget() : Container(),
               const SubmitAndLockButton(),
@@ -343,6 +345,7 @@ class _HomePageState extends State<HomePage> {
                 : (state.loadStatus == LoadStatus.ExistingStudent)
                     ? loadStudent(false) //printPDF()
                     : (state.loadStatus == LoadStatus.NewStudent &&
+                            Expired.hasStarted() == true &&
                             Expired.hasExpired() == false)
                         ? loadStudent(true)
                         : (Expired.hasExpired() == true)

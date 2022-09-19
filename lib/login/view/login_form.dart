@@ -2,6 +2,7 @@ import 'package:admission/configuration/configuration.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../home/home.dart';
 import '../login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -239,7 +240,16 @@ class _LoginButton extends StatelessWidget {
                   backgroundColor: Colors.blueAccent,
                 ),
                 onPressed: state.status.isValidated
-                    ? () => context.read<LoginCubit>().logInWithCredentials()
+                    ? () {
+                        if (!Expired.hasStarted()) {
+                          notifyDialog(context,
+                              "Form will open from $startDateOfRegistration");
+                        } else if (Expired.hasExpired()) {
+                          notifyDialog(context, "Form submission is closed !");
+                        } else {
+                          context.read<LoginCubit>().logInWithCredentials();
+                        }
+                      }
                     : null,
                 child: const Text('LOGIN'),
               );

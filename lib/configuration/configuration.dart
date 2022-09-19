@@ -10,6 +10,11 @@ int expMonth = 10;
 // therefore expDay = 26 + 1 = 27
 int expDay = 21;
 
+int startYear = 2022;
+int startMonth = 9;
+int startDay = 30;
+
+String startDateOfRegistration = "";
 String lastDateOfRegistration = "";
 String startDateOfSubmission = "";
 String lastDateOfSubmission = "";
@@ -38,6 +43,10 @@ String schoolEmail = "admission@stpaulsrourkela.org";
 void configurationUpdate() {
   lastDateOfRegistration = formatDate(
           DateTime(expYear, expMonth, expDay - 1), [d, '-', M, '-', yyyy])
+      .toUpperCase();
+
+  startDateOfRegistration = formatDate(
+          DateTime(startYear, startMonth, startDay), [d, '-', M, '-', yyyy])
       .toUpperCase();
 
   lastDateOfSubmission =
