@@ -133,10 +133,15 @@ class IAgreeCheckBox extends StatelessWidget {
                     ), //SizedBox
                     const Text(
                       'I AGREE',
+                      softWrap: true,
                       style: TextStyle(
-                          color: Colors.redAccent,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w900),
+                        color: Colors.redAccent,
+                        fontStyle: FontStyle.italic,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                        letterSpacing: 0.25,
+                        wordSpacing: 2.0,
+                      ),
                     ), //Text
                     const SizedBox(width: 10), //SizedBox
                     /** Checkbox Widget **/
@@ -282,7 +287,7 @@ class SubmitAndLockButton extends StatelessWidget {
           (previous.status != current.status) ||
           (previous.invalidFields != current.invalidFields),
       builder: (context, state) {
-        String invalidFields = state.invalidFields.toString();
+        // String invalidFields = state.invalidFields.toString();
 
         bool isValid = state.status.isValidated &&
             ((state.hasAadharCard == "YES" && state.aadharNumber.valid) ||
@@ -307,17 +312,24 @@ class SubmitAndLockButton extends StatelessWidget {
                       state.setEnabled
                           ? isValid
                               ? Container()
-                              : Text(
-                                  "Please check the following required fields (with blue highlighted icons) before submitting\n\n$invalidFields",
-                                  textAlign: TextAlign.center,
-                                  textWidthBasis: TextWidthBasis.parent,
-                                  overflow: TextOverflow.visible,
-                                  style: const TextStyle(
-                                      color: Colors.redAccent,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w900),
-                                )
+                              : invalidFieldsWidget(state.invalidFields)
+                          // : Text(
+                          //     "Please check the following required fields (with blue highlighted icons) before submitting\n\n$invalidFields",
+                          //     textAlign: TextAlign.center,
+                          //     textWidthBasis: TextWidthBasis.parent,
+                          //     overflow: TextOverflow.visible,
+                          //     softWrap: true,
+                          //     style: const TextStyle(
+                          //       color: Colors.redAccent,
+                          //       fontStyle: FontStyle.italic,
+                          //       fontWeight: FontWeight.w600,
+                          //       fontSize: 16,
+                          //       letterSpacing: 0.25,
+                          //       wordSpacing: 2.0,
+                          //     ),
+                          //   )
                           : Container(),
+                      spacerWidget(),
                       spacerWidget(),
                       (state.setEnabled == false ||
                               state.status == FormzStatus.submissionSuccess)
@@ -649,5 +661,47 @@ Widget dividerWidget() {
       indent: 20,
       endIndent: 20,
     ),
+  );
+}
+
+Widget invalidFieldsWidget(List<String> invalidFields) {
+  List<Widget> chipList = [];
+  for (var title in invalidFields) {
+    chipList.add(
+      invalidChip(title),
+    );
+  }
+  return Wrap(
+    spacing: 10.0,
+    runSpacing: 10.0,
+    runAlignment: WrapAlignment.spaceBetween,
+    alignment: WrapAlignment.spaceBetween,
+    crossAxisAlignment: WrapCrossAlignment.center,
+    children: chipList,
+  );
+}
+
+Widget invalidChip(String title) {
+  return Chip(
+    elevation: 3,
+    padding: const EdgeInsets.all(8),
+    backgroundColor: Colors.redAccent.shade100,
+    shadowColor: Colors.black,
+    avatar: const Icon(
+      Icons.warning_amber_rounded,
+      color: Colors.yellowAccent,
+      size: 18.0,
+    ),
+    label: Text(
+      title,
+      softWrap: true,
+      style: const TextStyle(
+        fontStyle: FontStyle.italic,
+        fontWeight: FontWeight.w600,
+        fontSize: 14,
+        letterSpacing: 0.25,
+        wordSpacing: 2.0,
+      ),
+    ), //Text
   );
 }

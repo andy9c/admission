@@ -31,7 +31,8 @@ pw.Widget buildCustomHeadline(StudentState state) => pw.Header(
     );
 
 Future<Uint8List> generatePdf(PdfPageFormat format, StudentState state) async {
-  bool isExistingStudent = state.loadStatus == LoadStatus.ExistingStudent;
+  bool isExistingStudent = (state.loadStatus == LoadStatus.ExistingStudent ||
+      state.loadStatus == LoadStatus.Loading);
 
   final pdf = pw.Document(
     version: PdfVersion.pdf_1_5,

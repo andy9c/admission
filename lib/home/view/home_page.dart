@@ -73,7 +73,15 @@ class _HomePageState extends State<HomePage> {
           ),
           child: Text(
             heading,
-            style: textTheme.titleMedium,
+            softWrap: true,
+            style: const TextStyle(
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w600,
+              fontSize: 16,
+              letterSpacing: 0.25,
+              wordSpacing: 2.0,
+              color: Colors.blueGrey,
+            ),
             textAlign: TextAlign.center,
           ),
         ),
@@ -144,7 +152,7 @@ class _HomePageState extends State<HomePage> {
               dividerWidget(),
               spacerWidget(),
               sectionInfo(
-                  "All information typed here is automatically converted to capital letters. Email addresses are valid both in capital and small letters. Example: hello@gmail.com is the same as HELLO@GMAIL.COM. If you don't receive an acknowledgement email after online submission, please check your spam folder.\n\nFor successfully completing the application process, please read the instructions carefully (click on the orange button).\nHere are some important information.\n\n1) Fill in the details here and submit the online application form on or before $lastDateOfRegistration\n2) Submit the printed form in the school office between 11-OCT-2022 and 22-OCT-2022"),
+                  "For successfully completing the application process, please read the instructions carefully (click on the orange button).\nHere are some important information.\n\n1) Fill in the details here and submit the online application form on or before $lastDateOfRegistration\n2) Submit the printed form in the school office between 11-OCT-2022 and 22-OCT-2022\n\nAll information typed here is automatically converted to capital letters. Email addresses are valid both in capital and small letters. Example: hello@gmail.com is the same as HELLO@GMAIL.COM. If you don't receive an acknowledgement email after online submission, please check your spam folder."),
               spacerWidget(),
               dividerWidget(),
               spacerWidget(),
@@ -306,8 +314,9 @@ class _HomePageState extends State<HomePage> {
               setEnabled ? spacerWidget() : Container(),
               setEnabled
                   ? sectionInfo(
-                      "Please carefully review this admission application form before submitting. Once submitted, it will be permanently locked. No further changes can be made at any point of time, in the admission process.")
+                      "Please carefully review this admission application form before submitting. Once submitted, it will be permanently locked. No further changes can be made at any point of time, in the admission process. Also do check the following incomplete fields.")
                   : Container(),
+              setEnabled ? spacerWidget() : Container(),
               setEnabled ? spacerWidget() : Container(),
               const SubmitAndLockButton(),
               const SizedBox(height: 80),
@@ -330,15 +339,14 @@ class _HomePageState extends State<HomePage> {
           ),
           IconButton(
             key: const Key('homePage_logout_iconButton'),
-            icon: const Icon(Icons.exit_to_app),
+            icon: const Icon(Icons.exit_to_app_rounded),
             onPressed: () => context.read<AppBloc>().add(AppLogoutRequested()),
           ),
         ],
       ),
       body: BlocProvider(
         create: (_) => _studentCubit,
-        child: BlocConsumer<StudentCubit, StudentState>(
-          listener: (context, state) {},
+        child: BlocBuilder<StudentCubit, StudentState>(
           builder: (context, state) {
             final RegExp emailRegExp = RegExp(
               r'^test+[0-9]+@admission.org$',
