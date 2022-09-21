@@ -4,7 +4,6 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -59,14 +58,9 @@ Future<void> main() async {
   final authenticationRepository = AuthenticationRepository();
   await authenticationRepository.user.first;
 
-  if (kIsWeb) {
-    // running on the web!
-    await FirebaseAppCheck.instance.activate(
-      webRecaptchaSiteKey: '6LfUzJgcAAAAABYmoyiNUOqaOcvMj8CXDyHTDr4p',
-    );
-  } else {
-    await FirebaseAppCheck.instance.activate();
-  }
+  await FirebaseAppCheck.instance.activate(
+    webRecaptchaSiteKey: '6LfUzJgcAAAAABYmoyiNUOqaOcvMj8CXDyHTDr4p',
+  );
 
   Bloc.observer = AppBlocObserver();
   runApp(App(authenticationRepository: authenticationRepository));
