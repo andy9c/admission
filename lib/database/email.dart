@@ -41,10 +41,14 @@ class Email {
       "bloodGroup": state.bloodGroup.value,
       "religion": state.religion.value,
       "socialCategory": state.socialCategory.value,
-      "aadharNumber": state.aadharNumber.value,
+      "aadharNumber": state.aadharNumber.value != null
+          ? state.aadharNumber.value!.trim()
+          : '',
       "lastSchoolAttended": state.lastSchoolAttended.value,
       "lastClassAttended": state.lastClassAttended.value,
-      "aadharEnrollmentID": state.aadharEnrollmentID.value,
+      "aadharEnrollmentID": state.aadharEnrollmentID.value != null
+          ? state.aadharEnrollmentID.value!.trim()
+          : '',
       "admissionSoughtForClass": state.admissionSoughtForClass.value,
       // "fatherFirstName": state.fatherFirstName.value,
       // "fatherMiddleName": state.fatherMiddleName,
