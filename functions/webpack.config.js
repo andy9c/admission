@@ -5,7 +5,7 @@ module.exports = {
   entry: './src/index.js',
   // The location of the build folder described above
   output: {
-    filename: '[name].bundle.js',
+    filename: 'bundle.js',
     path: path.resolve(__dirname, '../web'),
   },
   // Optional and for development only. This provides the ability to
@@ -14,15 +14,5 @@ module.exports = {
   mode: 'production',
   optimization: {
     usedExports: true,
-    runtimeChunk: 'single',
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all'
-        }
-      }
-    }
   },
 };
