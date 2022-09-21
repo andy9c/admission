@@ -11,10 +11,10 @@ enum CompulsoryValidationError {
 /// {@endtemplate}
 class Compulsory extends FormzInput<String?, CompulsoryValidationError> {
   /// {@macro compulsory}
-  const Compulsory.pure() : super.pure(null);
+  const Compulsory.pure() : super.pure('');
 
   /// {@macro compulsory}
-  const Compulsory.dirty([String? value = null]) : super.dirty(value);
+  const Compulsory.dirty([String? value = '']) : super.dirty(value);
 
   //r'^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$',
   // static final RegExp _compulsoryRegExp = RegExp(
