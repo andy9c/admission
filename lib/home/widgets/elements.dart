@@ -81,7 +81,9 @@ class Expired {
     var expiryTime = DateTime.utc(
       lastDateRegYear,
       lastDateRegMonth,
-      lastDateRegDay,
+      lastDateRegDay - 1,
+      18,
+      30,
     );
 
     return (thisInstant.compareTo(expiryTime.toLocal()) > 0) ? true : false;
@@ -93,7 +95,9 @@ class Expired {
     var startTime = DateTime.utc(
       startDateRegYear,
       startDateRegMonth,
-      startDateRegDay,
+      startDateRegDay - 1,
+      18,
+      30,
     );
 
     return (thisInstant.compareTo(startTime.toLocal()) >= 0) ? true : false;

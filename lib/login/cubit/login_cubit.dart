@@ -35,13 +35,17 @@ class LoginCubit extends Cubit<LoginState> {
     var openTime = DateTime.utc(
       startDateRegYear,
       startDateRegMonth,
-      startDateRegDay,
+      startDateRegDay - 1,
+      18,
+      30,
     );
 
     var closeTime = DateTime.utc(
       lastDateRegYear,
       lastDateRegMonth,
-      lastDateRegDay,
+      lastDateRegDay - 1,
+      18,
+      30,
     );
 
     var openDiff = openTime.difference(thisInstant);
