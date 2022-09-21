@@ -36,12 +36,10 @@ dependencies:
   duration: ^3.0.11
   easy_mask: ^2.0.1
   equatable: ^2.0.5
-  expansion_datagrid: ^1.0.7
   firebase_analytics: ^9.3.4
   firebase_app_check: ^0.0.7
   firebase_auth: ^3.7.0
   firebase_core: ^1.21.1
-  firebase_remote_config: ^2.0.16
   firebase_storage: ^10.3.7
   flow_builder: ^0.0.9
   flutter:

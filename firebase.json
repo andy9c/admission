@@ -27,9 +27,6 @@
   "storage": {
     "rules": "storage.rules"
   },
-  "remoteconfig": {
-    "template": "remoteconfig.template.json"
-  },
   "emulators": {
     "auth": {
       "port": 9099

@@ -183,13 +183,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.5"
-  expansion_datagrid:
-    dependency: "direct main"
-    description:
-      name: expansion_datagrid
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.7"
   fake_async:
     dependency: transitive
     description:
@@ -295,27 +288,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.2"
-  firebase_remote_config:
-    dependency: "direct main"
-    description:
-      name: firebase_remote_config
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.17"
-  firebase_remote_config_platform_interface:
-    dependency: transitive
-    description:
-      name: firebase_remote_config_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.16"
-  firebase_remote_config_web:
-    dependency: transitive
-    description:
-      name: firebase_remote_config_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.5"
   firebase_storage:
     dependency: "direct main"
     description:
