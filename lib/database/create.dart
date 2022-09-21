@@ -34,9 +34,13 @@ class Create {
       "bloodGroup": state.bloodGroup.value!.trim(),
       "religion": state.religion.value!.trim(),
       "socialCategory": state.socialCategory.value!.trim(),
-      "aadharNumber": state.aadharNumber.value!.trim(),
+      "aadharNumber": state.aadharNumber.value != null
+          ? state.aadharNumber.value!.trim()
+          : '',
       "hasAadharCard": state.hasAadharCard.trim(),
-      "aadharEnrollmentID": state.aadharEnrollmentID.value!.trim(),
+      "aadharEnrollmentID": state.aadharEnrollmentID.value != null
+          ? state.aadharEnrollmentID.value!.trim()
+          : '',
       "lastSchoolAttended": state.lastSchoolAttended.value!.trim(),
       "lastClassAttended": state.lastClassAttended.value!.trim(),
       "admissionSoughtForClass": state.admissionSoughtForClass.value!.trim(),

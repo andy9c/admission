@@ -12,10 +12,10 @@ enum AadharValidationError {
 /// {@endtemplate}
 class Aadhar extends FormzInput<String?, AadharValidationError> {
   /// {@macro compulsory}
-  const Aadhar.pure() : super.pure('');
+  const Aadhar.pure() : super.pure(null);
 
   /// {@macro compulsory}
-  const Aadhar.dirty([String? value = '']) : super.dirty(value);
+  const Aadhar.dirty([String? value = null]) : super.dirty(value);
 
   //r'^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$',
   // static final RegExp _compulsoryRegExp = RegExp(
