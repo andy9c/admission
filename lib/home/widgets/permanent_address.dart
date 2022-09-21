@@ -28,13 +28,13 @@ class PermanentLocation extends StatelessWidget {
         return Align(
           alignment: Alignment.center,
           child: Padding(
-            padding:  EdgeInsets.symmetric(
+            padding: EdgeInsets.symmetric(
               vertical: 0,
               horizontal: 5.w,
             ),
             child: TextFormField(
               inputFormatters: [
-                UpperCaseTextFormatter(),
+                UpperCaseAndDigitsTextFormatter(),
               ],
               enabled: state.setEnabled && !state.sameAsPresentCheckBox.value,
               initialValue: state.setEnabled
@@ -93,7 +93,7 @@ class PermanentCity extends StatelessWidget {
         return Align(
           alignment: Alignment.center,
           child: Padding(
-            padding:  EdgeInsets.symmetric(
+            padding: EdgeInsets.symmetric(
               vertical: 0,
               horizontal: 5.w,
             ),
@@ -155,13 +155,13 @@ class PermanentPostOffice extends StatelessWidget {
         return Align(
           alignment: Alignment.center,
           child: Padding(
-            padding:  EdgeInsets.symmetric(
+            padding: EdgeInsets.symmetric(
               vertical: 0,
               horizontal: 5.w,
             ),
             child: TextFormField(
               inputFormatters: [
-                UpperCaseTextFormatter(),
+                UpperCaseAndDigitsTextFormatter(),
               ],
               enabled: state.setEnabled && !state.sameAsPresentCheckBox.value,
               initialValue: state.setEnabled
@@ -217,7 +217,7 @@ class PermanentDistrict extends StatelessWidget {
         return Align(
           alignment: Alignment.center,
           child: Padding(
-            padding:  EdgeInsets.symmetric(
+            padding: EdgeInsets.symmetric(
               vertical: 0,
               horizontal: 5.w,
             ),
@@ -280,7 +280,7 @@ class PermanentState extends StatelessWidget {
         return Align(
           alignment: Alignment.center,
           child: Padding(
-            padding:  EdgeInsets.symmetric(
+            padding: EdgeInsets.symmetric(
               vertical: 0,
               horizontal: 5.w,
             ),
@@ -346,7 +346,7 @@ class PermanentPinCode extends StatelessWidget {
         return Align(
           alignment: Alignment.center,
           child: Padding(
-            padding:  EdgeInsets.symmetric(
+            padding: EdgeInsets.symmetric(
               vertical: 0,
               horizontal: 5.w,
             ),

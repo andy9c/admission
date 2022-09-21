@@ -25,7 +25,7 @@ class PresentLocation extends StatelessWidget {
             ),
             child: TextFormField(
               inputFormatters: [
-                UpperCaseTextFormatter(),
+                UpperCaseAndDigitsTextFormatter(),
               ],
               enabled: state.setEnabled,
               initialValue: state.presentLocation.value,
@@ -121,7 +121,7 @@ class PresentPostOffice extends StatelessWidget {
             ),
             child: TextFormField(
               inputFormatters: [
-                UpperCaseTextFormatter(),
+                UpperCaseAndDigitsTextFormatter(),
               ],
               enabled: state.setEnabled,
               initialValue: state.presentPostOffice,
