@@ -1,5 +1,4 @@
 // ignore_for_file: avoid_print
-// trigger email config : secret : smtps://notification@stpaulsrourkela.org:3T6hb5L4hRWFf5z@smtp.gmail.com:465
 
 import 'package:admission/configuration/configuration.dart';
 
