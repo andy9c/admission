@@ -5,7 +5,7 @@ module.exports = {
   entry: './src/index.js',
   // The location of the build folder described above
   output: {
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, '../web'),
   },
   // Optional and for development only. This provides the ability to
@@ -13,6 +13,21 @@ module.exports = {
   devtool: 'eval-source-map',
   mode: 'production',
   optimization: {
+    runtimeChunk: 'single',
     usedExports: true,
+    minimize: true,
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+        },
+        jquery: {
+          test: /[\\/]node_modules[\\/](jquery)[\\/]/,
+          name: 'jquery',
+        },
+      },
+    },
   },
 };
