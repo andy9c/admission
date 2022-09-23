@@ -1,1 +1,1 @@
-cd functions & npm run build & cd .. & flutter clean & flutter build web --no-source-maps --csp & cd .\build\web & terser bundle.js -o bundle.js --comments false --defaults false & terser flutter.js -c -o flutter.js --comments false & terser flutter_service_worker.js -c -o flutter_service_worker.js --comments false & terser main.dart.js -c -o main.dart.js --comments false & firebase deploy --only hosting
+cd functions & npm run build & cd .. & flutter clean & flutter build web --no-source-maps --csp & firebase deploy --only hosting
