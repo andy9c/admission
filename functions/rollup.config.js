@@ -1,5 +1,6 @@
 import { nodeResolve } from '@rollup/plugin-node-resolve';
-import { terser } from 'rollup-plugin-terser';
+// import { terser } from 'rollup-plugin-terser';
+import commonjs from '@rollup/plugin-commonjs';
 
 export default {
   // the entry point file described above
@@ -18,9 +19,24 @@ export default {
   },
   // Add the plugin to map import paths to dependencies
   // installed with npm
-  plugins: [nodeResolve(), terser({
-    output: {
-      comments: false,
-    },
-  })]
+  plugins: [nodeResolve(),
+    // terser({
+    //   compress: {
+    //     defaults: false,
+    //   },
+    //   output: {
+    //     comments: false,
+    //   },
+    // }),
+  commonjs({
+    // non-CommonJS modules will be ignored, but you can also
+    // specifically include/exclude files
+    include: [ "src/index.js", "node_modules/**" ], // Default: undefined
+
+    // if true then uses of `global` won't be dealt with by this plugin
+    ignoreGlobal: false, // Default: false
+
+    // if false then skip sourceMap generation for CommonJS modules
+    sourceMap: false // Default: true
+  }),]
 };
