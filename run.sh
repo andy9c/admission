@@ -3,4 +3,10 @@ npm run build
 cd ..
 flutter clean
 flutter build web --no-source-maps --csp
+cd ./build/web
+terser flutter_service_worker.js -c --comments false -o flutter_service_worker.js
+terser flutter.js -c --comments false -o flutter.js
+terser main.dart.js -c --comments false -o main.dart.js
+cd ..
+cd ..
 firebase deploy --only hosting
