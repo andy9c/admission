@@ -3,6 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
+import { getPerformance } from "firebase/performance";
 
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -23,3 +24,4 @@ const app = initializeApp(firebaseConfig);
 const defaultAnalytics = getAnalytics(app);
 const defaultFirestore = getFirestore(app);
 const defaultStorage = getStorage(app);
+const defaultPerformance = getPerformance(app);
