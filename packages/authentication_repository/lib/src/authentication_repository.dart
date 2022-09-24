@@ -113,8 +113,8 @@ class AuthenticationRepository {
   Future<void> logOut() async {
     try {
       await Future.wait([
-        _firebaseAuth.signOut(),
-        _googleSignIn.signOut(),
+        if (_firebaseAuth.currentUser != null) _firebaseAuth.signOut(),
+        if (_googleSignIn.currentUser != null) _googleSignIn.signOut(),
       ]);
     } on Exception {
       throw LogOutFailure();
