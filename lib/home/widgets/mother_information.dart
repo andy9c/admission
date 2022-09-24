@@ -441,7 +441,8 @@ class MotherEmail extends StatelessWidget {
             ),
             child: TextFormField(
               inputFormatters: [
-                EmailTextFormatter(),
+                FilteringTextInputFormatter.allow(
+                    r'[A-Z0-9\,\-\:\/\.\(\)\&\@\_\+]')
               ],
               enabled: state.setEnabled,
               initialValue: state.motherEmail.value,
