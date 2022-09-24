@@ -1,6 +1,6 @@
 # admission
 
-A new Flutter project.
+St Paul's Rourkela Admission.
 
 ## Getting Started
 
