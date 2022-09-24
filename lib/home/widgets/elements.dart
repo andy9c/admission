@@ -64,8 +64,7 @@ class EmailTextFormatter extends TextInputFormatter {
       TextEditingValue oldValue, TextEditingValue newValue) {
     String textValue = newValue.text
         .toUpperCase()
-        .replaceAll(RegExp(r'[ ]{1,}'), '')
-        .replaceAll(RegExp(r'[^A-Z0-9 \,\-\:\/\.\(\)\&\@\_\+]'), '');
+        .replaceAll(RegExp(r'[^A-Z0-9\,\-\:\/\.\(\)\&\@\_\+]'), '');
 
     return TextEditingValue(
       text: textValue,
