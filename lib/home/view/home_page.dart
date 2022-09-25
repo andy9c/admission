@@ -301,7 +301,7 @@ class _HomePageState extends State<HomePage> {
               spacerWidget(),
               !setEnabled
                   ? sectionInfo(
-                      "3) I understand and agree that this admission from is permanently locked and no further changes can be made at any point of time, in the admission process.")
+                      "3) I understand and agree that this admission form is permanently locked and no further changes can be made at any point of time, in the admission process.")
                   : Container(),
               spacerWidget(),
               const IAgreeCheckBox(),
