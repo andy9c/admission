@@ -1,3 +1,4 @@
+import 'package:admission/configuration/configuration.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import '../routes/routes.dart';
@@ -39,7 +40,7 @@ class AppView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Sizer(builder: (context, orientation, deviceType) {
       return MaterialApp(
-        title: "St. Paul's School Admission",
+        title: configAppBarName,
         builder: (context, child) => ResponsiveWrapper.builder(
           BouncingScrollWrapper.builder(context, child!),
           maxWidth: 1200,
