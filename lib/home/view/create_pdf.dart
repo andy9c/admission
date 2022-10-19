@@ -16,6 +16,7 @@ class CreatePDF extends StatelessWidget {
     bool isExistingStudent = state.loadStatus == LoadStatus.ExistingStudent;
 
     return MaterialApp(
+      title: "Admission Form",
       home: Scaffold(
         appBar: AppBar(
           title: Text(
