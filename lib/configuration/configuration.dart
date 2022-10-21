@@ -10,7 +10,7 @@ int startDateRegDay = 30;
 
 int lastDateRegYear = 2022;
 int lastDateRegMonth = 10;
-int lastDateRegDay = 21;
+int lastDateRegDay = 20;
 
 int startDateSubYear = 2022;
 int startDateSubMonth = 10;
@@ -53,8 +53,7 @@ void configurationUpdate() {
       [d, '-', M, '-', yyyy]).toUpperCase();
 
   lastDateOfRegistration = formatDate(
-      DateTime(lastDateRegYear, lastDateRegMonth, lastDateRegDay)
-          .subtract(const Duration(days: 1)),
+      DateTime(lastDateRegYear, lastDateRegMonth, lastDateRegDay),
       [d, '-', M, '-', yyyy]).toUpperCase();
 
   startDateOfSubmission = formatDate(

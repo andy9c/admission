@@ -80,7 +80,7 @@ class Expired {
     var expiryTime = DateTime.utc(
       lastDateRegYear,
       lastDateRegMonth,
-      lastDateRegDay - 1,
+      lastDateRegDay,
       18,
       30,
     );
