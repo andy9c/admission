@@ -29,23 +29,23 @@ environment:
 dependencies:
   authentication_repository:
     path: packages/authentication_repository
-  cloud_firestore: ^3.4.8
+  cloud_firestore: ^4.0.2
   dart_date: ^1.1.1
-  date_format: ^2.0.6
-  duration: ^3.0.11
+  date_format: ^2.0.7
+  duration: ^3.0.12
   easy_mask: ^2.0.1
   equatable: ^2.0.5
-  firebase_analytics: ^9.3.5
-  firebase_app_check: ^0.0.7+1
-  firebase_auth: ^3.9.0
-  firebase_core: ^1.22.0
-  firebase_storage: ^10.3.8
+  firebase_analytics: ^10.0.2
+  firebase_app_check: ^0.1.1+1
+  firebase_auth: ^4.0.2
+  firebase_core: ^2.1.0
+  firebase_storage: ^11.0.2
   flow_builder: ^0.0.9
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.1
   flutter_launcher_icons: ^0.10.0
-  flutter_native_splash: ^2.2.9
+  flutter_native_splash: ^2.2.11
   form_input: ^0.1.1
   form_inputs:
     path: packages/form_inputs
