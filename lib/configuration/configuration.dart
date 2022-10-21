@@ -53,7 +53,8 @@ void configurationUpdate() {
       [d, '-', M, '-', yyyy]).toUpperCase();
 
   lastDateOfRegistration = formatDate(
-      DateTime(lastDateRegYear, lastDateRegMonth, lastDateRegDay),
+      DateTime(lastDateRegYear, lastDateRegMonth, lastDateRegDay)
+          .subtract(const Duration(days: 1)),
       [d, '-', M, '-', yyyy]).toUpperCase();
 
   startDateOfSubmission = formatDate(
