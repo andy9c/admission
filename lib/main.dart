@@ -11,6 +11,8 @@ import 'app/view/app.dart';
 import 'configuration/configuration.dart';
 import 'firebase_options.dart';
 
+import './native_config.dart' if (dart.library.html) './web_config.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -60,5 +62,6 @@ Future<void> main() async {
   );
 
   Bloc.observer = AppBlocObserver();
+  urlConfig();
   runApp(App(authenticationRepository: authenticationRepository));
 }
