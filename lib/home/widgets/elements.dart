@@ -94,10 +94,10 @@ class Expired {
     var startTime = DateTime.utc(
       startDateRegYear,
       startDateRegMonth,
-      startDateRegDay - 1,
+      startDateRegDay,
       18,
       30,
-    );
+    ).subtract(const Duration(days: 1));
 
     return (thisInstant.compareTo(startTime.toLocal()) >= 0) ? true : false;
   }
