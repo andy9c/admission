@@ -1,12 +1,1 @@
-{
-  "type": "service_account",
-  "project_id": "stpaulsrkl-admission",
-  "private_key_id": "d5a926ab4e785d4bc6a9de5dde90978a36c73ef7",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEuwIBADANBgkqhkiG9w0BAQEFAASCBKUwggShAgEAAoIBAQCb1vfoUCMShF6n\na7VmYODwPFrQzmY3U3+vharGIuuh9vdcjG+wJYlUWI/LXRAsi5sciOPfKtnWzu92\nv1iXKYxuSoi9Fa54sskXbgC9GqloYcLkGE+ocBYh/FWG8WEQzVuH4VqvlasZkW+g\nEBHfo3ZvbXppZq1LjUndKO8oaAFINizBcjBM2gM07ZXt3Yk6784Erqq0Nr3//3gs\nj7qiHDfhqXra49c3cGtdz943R9MAGKvHJACJd00GvM28aDXZRfC/+nHvbzy4jx30\n/bD+GG286O+++OjrhL9cnP2wmlIx4emZEMoWVvgL9rlr8k+sdMwnmjMM4JJCBJf0\nT6Qo0nxjAgMBAAECgf8nkW1gjvhYu0NNPwvP8skqNijY248YfRrudgHmTPeHKC2m\nUgIJt34m7FWWTQrORKQdmqRBBaBJ6kDi5bKYrvP5DPOrDtY9zyc/y65kVWCuICRb\nxdBz9AGqn2cX3DHJElsrJQzhiB7pXwP4oBvprJdls2ZhXLCjfjxC6yHOIJoyuykv\nx5GadlrkLoOX2Tkpph37ulYlzVv2bfR3MOUHZqRM7e4vS/gggbLLzLdhysWSQFmh\nNl/nagcvxs5SBGVZgUns82840DFoYGTFbEiMtRHT7JavxfTiPynk6Pl2lb8IyvJi\nnhGOpkBDyP5VstrJUJADlJae9HIHednTZyMM/8kCgYEAy2uXyWL2wepD2HDdmJlN\n5lhbVaAS5FlZdz3PDZkz73J939sl4PJKBgRlwQqgpHihuVKNtU6Ojl2a9umUL0Bx\nPSejaaOKUijAU39rTWgRuIMyptAJx/+llF/nnxsdd6bmkFla6PipMEaZ/bMDxjmx\nmGyH0iZ5shZnW1WmAbYw8n8CgYEAxB7y/wFlY1hNjx0Mem7vknm8aULa9iWC4daM\nDqFX21VKNCY7YuDQb/juAOPCJTias+iGhdlHiRgtrw6aEPe+frL3F16cY8ikQAgE\nY7Ghzq/j6AEzfNtRMk8gOarqTkH3e/55A9/GKpIFEeV3oxtzDv12Z/vkpSf8O25m\n09xu/B0CgYA8NzVPYAQ7kuVShNaT/Y2Zyj3/Mstk3S4mph1MoTVGhFXOlki4NgDD\nlzmn00WKaks1WMKqEP8SFZNx0+MRubnLqJgvBUJE39tO3EEfQNc+D1hHGP5MPdj9\n+wXNi3FFohpOUKUgobszlzKubveHDj0MKdRq2QjdNtSRrODfUNdccQKBgQC5dJ7K\nX3KVyAnHnGuRV1g6xd1SGINgIkaq8qwMpauj3/pEaCbeMMNKLzY5JycO9YDtQaP7\n7GSGEpQYpxEvnGbJ/shDlBcFENWpKyujbnUZMyCr4n7iwa39ie9qOOJKUH0MBq4+\n6JvG47/hlYFVfv6FnU8bs4oaVz5goNyh2SAmTQKBgHTJ/HoeUBa6800OMvZEyUGi\n6LMqMBHlKVgugtqtEbyGdPSVEv5V52qao1e/UQP3nfZtqBllERmZfl3gJ3/4Z6ph\n8BrG2uBfuE3jPcoIj8SGJ0YWd7BrivCRDrS3J0GWNutIZFZeCbyMdp8iEeD0X41T\nJ0FDDNn8hTaRkuGL9NWX\n-----END PRIVATE KEY-----\n",
-  "client_email": "firebase-adminsdk-piwww@stpaulsrkl-admission.iam.gserviceaccount.com",
-  "client_id": "100572954233486013235",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-piwww%40stpaulsrkl-admission.iam.gserviceaccount.com"
-}
+
